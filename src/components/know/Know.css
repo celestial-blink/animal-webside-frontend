@@ -1,0 +1,52 @@
+.wrapper-know{
+    display: grid;
+    grid-template-columns:1fr 136px;
+    grid-gap: 15px;
+    background-color: #313131;
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 0 85px 85px 0;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 10px 0;
+}
+.know-text{
+    width: 100%;
+}
+.wrapper-know *{
+    color: #DFDFDF;
+    margin: 0;
+    padding: 0;
+}
+.know-text h2{
+    margin: 0px 0 20px;
+}
+.know-imagen{
+    height: 130px;
+    width: 130px;
+    object-fit: cover;
+    object-position: center;
+    position: relative;
+    border-radius: 50%;
+    border: 3px solid #40ef2d;
+}
+
+@media (max-width:400px){
+    .wrapper-know{
+        padding: 10px;
+        border-radius: 0 50px 50px 0;
+    }
+    .know-imagen{
+        height: 90%;
+        border-radius: 0 50px 50px 0;
+    }
+    .know-text h2{
+    margin: 0px 0 10px;
+    font-size: 16px;
+    font-weight: bold;
+    }
+    .wrapper-know .know-text p{
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,34 @@
+.wrapper-search{
+    position: relative;
+    height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    grid-area: header;
+    justify-content: center;
+}
+.wrapper-search>*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.wrapper-search input[type="text"]{
+    width: 90%;
+    height: 50%;
+    border-radius: 20px;
+    border-width: 0px;
+    outline: none;
+    text-align: center;
+    border: 3px solid #40EF2D;
+    color: #878787;
+    font-weight: bold;
+}
+.wrapper-search a{
+    height: 37px;
+    width: 37px;
+    position: absolute;
+    display: inline-block;
+    right: 5%;
+    font-size: 27px;
+}
+.wrapper-search input[type="text"]::placeholder{
+    text-align: center;
+}

@@ -1,0 +1,113 @@
+.wrapper-navbar{
+    min-height: 50px;
+    display: grid;
+    background: #313131;
+    align-items: center;
+    grid-template-columns: 250px 1fr;
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+    z-index: 10;
+    left: 0;
+    top: 0;
+}
+.wrapper-navbar>*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.navbar-logo a{
+    display: inline-block;
+    text-align: center;
+}
+.navbar-btn-menu{
+    display: none;
+    justify-content: right;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+.navbar-btn-menu a{
+    color:white;
+    text-decoration: none;
+}
+.navbar-logo{
+    position: relative;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    padding: 1px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.navbar-logo img{
+    height: 75%;
+    width: 75%;
+}
+.navbar-navigator{
+    display: grid;
+    grid-template-columns: repeat(4,100px);
+    justify-content: right;
+    position: relative;
+    transition: all .4s;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.navbar-navigator span{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+}
+.navbar-navigator a{
+    color:white;
+    text-align: center;
+    text-decoration: none;
+}
+@media (max-width:700px){
+    .wrapper-navbar{
+        position: fixed;
+        width: 100%;
+    }
+    .navbar-btn-menu{
+        display: grid;
+    }
+    .navbar-logo a {
+        text-align: left;
+        margin-left: 20px;
+    }
+    .navbar-navigator{
+        position: fixed;
+        width: 100%;
+        height: calc(100vh - 50px);
+        left: 100%;
+        top: 50px;
+        background-color: #313131;
+        grid-template-columns: 1fr;
+        align-items: center;
+        justify-content: center;
+    }
+    .navbar-navigator a {
+        font-size: 23px;
+        font-weight: bold;
+        z-index: 2;
+    }
+    .navbar-navigator span::after{
+        content: attr(data-text);
+        font-size: 90px;
+        color:#40EF2D;
+        position: absolute;
+        z-index: 1;
+        letter-spacing: 100px;
+        opacity: 0;
+        font-weight: bold;
+        transition: all .5s;
+        filter: blur(1px);
+    }
+    .navbar-navigator span:hover::after{
+        letter-spacing: 10px;
+        opacity: .3;
+        filter: blur(0px);
+    }
+}

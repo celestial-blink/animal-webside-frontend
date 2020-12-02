@@ -1,0 +1,23 @@
+.header-shape{
+    position: absolute;
+    height: 500px;
+    width: 100%;
+    background-color: #313131;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%,0% 70%);
+    z-index: -1;
+  }
+  .header-shape img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter:opacity(.5);
+  }
+  
+  .content-login{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap:20px;
+    padding: 8%;
+    width: 300px;
+  }

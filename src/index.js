@@ -1,12 +1,51 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Home from './views/home';
+import Layout from './views/layout';
+import Information from './views/information';
+import Login from './views/login';
+import Galery from './views/galery';
+import Contact from './views/contact';
+import Error404 from './views/notfound';
+import Animalform from './components/animalform/Animalform';
+
+import Systemadmin from './views/Systemadmin';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/system/admin" component={Systemadmin}/>
+          <Layout>
+            <Route exact path="/">
+              <Home/>
+            </Route>
+            <Route exact path="/information">
+              <Information />
+            </Route>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+            <Route exact path="/galery">
+              <Galery />
+            </Route>
+            <Route exact path="/contact">
+              <Contact />
+            </Route>
+            <Route exact path="/new-animal">
+              <Animalform />
+            </Route>
+            <Route>
+              <Error404 />
+            </Route>
+        </Layout>
+        </Switch>
+      </BrowserRouter>
+    </>
   </React.StrictMode>,
   document.getElementById('root')
 );

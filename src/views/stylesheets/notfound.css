@@ -1,0 +1,45 @@
+.wrapper-notfound{
+    display: grid;
+    grid-template-columns:1fr 100px 1fr;
+    justify-items: center;
+    align-items: center;
+    grid-gap:10px;
+    width: calc(100% - 30px);
+    background-color: white;
+    grid-area: principal;
+    box-sizing: border-box;
+    margin-left: 30px;
+}
+.wrapper-notfound h2{
+    padding: 0;
+    margin: 0;
+    color: #878787;
+}
+.wrapper-notfound .notfound-text1{
+    grid-area: 1/1;
+    width: 100%;
+    text-align: right;
+}
+.wrapper-notfound .notfound-text2{
+    grid-area: 2/2;
+}
+.wrapper-notfound img{
+    grid-area: 3 / span 3;
+}
+.wrapper-notfound .notfound-text3{
+    grid-area: 4/span 3;
+}
+@media (max-width:700px){
+    .wrapper-notfound {
+        margin: 0;
+        width: 100%;
+    }
+}
+@media (max-width:530px){
+    .wrapper-notfound{
+        grid-gap:2px;
+    }
+    .wrapper-notfound img{
+        width: 300px;
+    }
+}

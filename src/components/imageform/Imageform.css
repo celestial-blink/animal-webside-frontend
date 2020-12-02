@@ -1,0 +1,58 @@
+.wrapper-image-form{
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 350px;
+    padding: 5px;
+    background-color: var(--color-black-one);
+    border-radius: 5px;
+}
+.wrapper-image-form *{
+    padding: 0;
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-sizing: border-box;
+}
+.wrapper-image-form .error{
+    background-color: red;
+}
+.wrapper-image-form p{
+    color:white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 12px;
+    background-color: var(--color-green-one);
+}
+.wrapper-image-form form{
+    display: grid;
+    grid-template-columns: subgrid;
+}
+.wrapper-image-form form input{
+    height: 35px;
+    border:2px solid var(--color-black-one);
+    padding: 0 5px;
+    color:var(--color-black-one);
+}
+.wrapper-image-form form label{
+    height: 35px;
+    width: 100%;
+    display: inline-block;
+    background-color: var(--color-black-one);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 13px;
+}
+.wrapper-image-form form input[type="file"]{
+    display: none;
+}
+.wrapper-image-form form input[type="submit"]{
+    background-color: var(--color-green-one);
+    color: white;
+    font-weight: bold;
+    border-width: 2px 0;
+    text-transform: uppercase;
+}
+.wrapper-image-form .fa-check{
+    display: none;
+}

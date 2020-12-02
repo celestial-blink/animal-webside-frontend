@@ -1,0 +1,13 @@
+.wrapper-home{
+    position: relative;
+    grid-area: principal;
+    box-sizing: border-box;
+    margin-left: 30px;
+    width: calc(100% - 30px);
+}
+@media(max-width:700px){
+    .wrapper-home{
+        width: 100%;
+        margin: 0;
+    }
+}

@@ -1,0 +1,118 @@
+@import './index.css';
+.wrapper-system{
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    box-sizing: border-box;
+    height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+}
+.wrapper-system .system-navbar{
+    display: grid;
+    grid-template-columns:1fr;
+    grid-template-rows: min-content;
+    box-sizing: border-box;
+    padding: 10px 5px;
+    background-color: var(--color-black-one);
+    justify-items: center;
+    align-items: flex-end;
+    grid-gap: 10px;
+    grid-template-rows: 60px 190px 30px 200px;
+
+}
+.wrapper-system .system-navbar>*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+.wrapper-system .system-navbar a:hover{
+    color:var(--color-green-two);
+    transition: all .4s;
+}
+.wrapper-system .system-navbar .system-logo{
+    display: inline-block;
+    height: 50px;
+    width: 90%;
+}
+.wrapper-system .system-navbar .system-logo img{
+    object-fit: cover;
+    width: 100%;
+}
+.wrapper-system .system-navbar .system-imagen{
+    height: 170px;
+    position: relative;
+
+}
+.wrapper-system .system-navbar .system-imagen:hover i,
+.wrapper-system .system-navbar .system-imagen:hover img,
+.wrapper-system .system-navbar .system-imagen:hover h4{
+    opacity: 1;
+    border-color: var(--color-green-two);
+    color:var(--color-green-two);
+}
+.wrapper-system .system-navbar .system-imagen img{
+    object-fit: cover;
+    height: 150px;
+    width: 150px;
+    border:5px solid var(--color-gray-two);
+    border-radius: 50%;
+    transition: all .3s;
+}
+.wrapper-system .system-navbar .system-imagen h4{
+    color: var(--color-gray-two);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Comic Sans MS';
+    font-weight: normal;
+    transition: all .3s;
+}
+.wrapper-system .system-navbar .system-imagen i{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    transition: all .3s;
+    opacity: 0;
+}
+.wrapper-system .system-logout{
+    color: var(--color-gray-two);
+    font-weight: bold;
+    transition: all .4s;
+}
+.wrapper-system .system-logout:hover{
+    color: var(--color-red-two) !important;
+}
+.wrapper-system .system-content{
+    display: grid;
+    width: 100%;
+    height: 80%;
+    justify-items: center;
+    grid-template-columns: 100px 1fr;
+    align-items: center;
+}
+.wrapper-system .system-content i{
+    color:var(--color-gray-two);
+    font-size: 20px;
+}
+.wrapper-system .system-content a{
+    color:var(--color-gray-two);
+    text-decoration: none;
+    text-align: left;
+    width: 100%;
+}
+
+.wrapper-system .system-navbar .system-footer{
+    color: var(--color-gray-two);
+    text-align: center;
+    font-size: 13px;
+}
+
+.wrapper-system .system-main-content{
+    background-color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 10px 20px;
+}

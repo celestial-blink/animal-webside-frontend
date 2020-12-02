@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="556" height="529" viewBox="0 0 556 529">
+  <g id="Grupo_19" data-name="Grupo 19" transform="translate(-127 -230)">
+    <rect id="Rectángulo_48" data-name="Rectángulo 48" width="556" height="529" transform="translate(127 230)" fill="#fff"/>
+    <g id="Grupo_18" data-name="Grupo 18" transform="translate(5 19)">
+      <text id="Image" transform="translate(172 567)" fill="#a4a4a4" font-size="54" font-family="Verdana-Bold, Verdana" font-weight="700"><tspan x="0" y="0">Image</tspan></text>
+      <text id="not_found" data-name="not found" transform="translate(270 632)" fill="#a4a4a4" font-size="54" font-family="Verdana-Bold, Verdana" font-weight="700"><tspan x="0" y="0">not found</tspan></text>
+      <g id="Grupo_17" data-name="Grupo 17" transform="translate(36 -283)">
+        <circle id="Elipse_27" data-name="Elipse 27" cx="149" cy="149" r="149" transform="translate(295 574)" fill="#ebebeb"/>
+        <path id="Trazado_23" data-name="Trazado 23" d="M6264.4,808.056s80.918-70.8,164.084,0" transform="translate(-5902 7)" fill="none" stroke="#9f9f9f" stroke-linecap="round" stroke-width="7"/>
+        <path id="Trazado_24" data-name="Trazado 24" d="M52.5,0C81.495,0,105,24.4,105,54.5S81.495,84.157,52.5,84.157,0,84.6,0,54.5,23.505,0,52.5,0Z" transform="matrix(0.966, -0.259, 0.259, 0.966, 322.898, 659.022)" fill="#9f9f9f"/>
+        <path id="Trazado_25" data-name="Trazado 25" d="M52.5,84.157c28.995,0,52.5-24.4,52.5-54.5S81.495,0,52.5,0,0-.442,0,29.657,23.505,84.157,52.5,84.157Z" transform="matrix(-0.966, -0.259, 0.259, -0.966, 546.32, 740.311)" fill="#9f9f9f"/>
+      </g>
+    </g>
+  </g>
+</svg>

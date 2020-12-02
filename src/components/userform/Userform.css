@@ -1,0 +1,33 @@
+.wrapper-form-user{
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: var(--color-black-one);
+}
+.wrapper-form-user *{
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.wrapper-form-user .response{
+    min-height: 35px;
+    width: 100%;
+    background-color: var(--color-black-two);
+    color:white;
+}
+.wrapper-form-user form{
+    display: grid;
+    grid-template-columns: subgrid;
+    padding: 5px;   
+    grid-gap: 5px;
+}
+.wrapper-form-user form input{
+    height: 35px;
+    border:2px solid var(--color-gray-one);
+    padding: 0 5px;
+    width: 100%;
+    color:var(--color-black-two);
+}
+.wrapper-form-user form input[type="submit"]{
+    background-color: var(--color-green-one);
+    color:white;
+    border-width: 0px;
+}
