@@ -1,7 +1,7 @@
 import {useState,useEffect} from 'react';
 
 import Showminimagen from '../showminimagen/Showminimagen';
-import 'Knowform.css';
+import './Knowform.css';
 const Knowform=()=>{
     const [knowData,setKnowData]=useState({
         _id:"",
@@ -61,7 +61,7 @@ const Knowform=()=>{
                     <input type="submit" value="PUBLICAR"/>
                 </form>
             </div>
-            {(showimages)?null:<Showminimagen setShowImagens={setShowImagens} setImagenid={setImagenid}/>}
+            {(showimagens)?null:<Showminimagen setShowImagens={setShowImagens} setImagenid={setImagenid}/>}
         </>
     );
 }

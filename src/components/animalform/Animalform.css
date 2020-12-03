@@ -1,6 +1,7 @@
 .wrapper-animal-form{
     grid-area: principal;
     margin-left: 30px;
+    height: 100%;
     width: calc(100% - 30px);
     position: relative;
     display: grid;
@@ -23,6 +24,7 @@
     height: 30px;
     text-align: center;
     font-weight: bold;
+    text-transform: uppercase;
 }
 .wrapper-animal-form label{
     color: var(--color-gray-two);

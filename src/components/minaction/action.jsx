@@ -10,7 +10,7 @@ const minAction=()=>{
                 </a>
             </span>
             <span>
-                <a href="/new-animal">
+                <a href="/animal/new">
                     <i className="fa fa-plus" aria-hidden="true"></i>
                     <p>new animal</p>
                 </a>

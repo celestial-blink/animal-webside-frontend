@@ -16,8 +16,35 @@
   
   .content-login{
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 350px 1fr;
+    grid-template-areas: 'formulario1 imagen1' 'formulario2 imagen2';
     grid-gap:20px;
+    grid-template-rows: min-content;
+    width: 100%;
+    box-sizing: border-box;
     padding: 8%;
-    width: 300px;
+  }
+  .content-login img{
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(0 0 0/40%);
+    box-sizing: border-box;
+    padding: 10px;
+    min-height: 80px;
+    grid-area: imagen1;
+  }
+  .content-login img:last-child{
+    grid-area: imagen2;
+  }
+
+  @media (max-width:520px){
+    .content-login{
+      grid-template-columns: 1fr;
+      grid-template-areas:'imagen1' 'formulario1' 'formulario2';
+    }
+    .content-login img:last-child{
+      display: none;
+    }
+
   }

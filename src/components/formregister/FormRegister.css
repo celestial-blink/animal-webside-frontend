@@ -1,4 +1,5 @@
 .wrapper-form-registration{
+    grid-area: formulario2;
     display: grid;
     grid-template-columns: 1fr;
     box-sizing: border-box;
@@ -8,7 +9,7 @@
     background-color: white;
     width: 100%;
     height: 100%;
-    border:3px solid #40EF2D;
+    border:3px solid var(--color-green-one);
 }
 .wrapper-form-registration *{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -16,7 +17,7 @@
 .wrapper-form-registration h2{
     margin: 0;
     padding: 0;
-    color:#40EF2D;
+    color:var(--color-green-one);
     text-align: center;
 }
 .wrapper-form-registration input{
@@ -24,8 +25,8 @@
     width: 100%;
     height: 30px;
     text-align: center;
-    border:2px solid #40EF2D;
-    color: #40EF2D;
+    border:3px solid var(--color-green-one);
+    color: var(--color-green-one);
     padding: 0;
     margin: 0;
 }
@@ -34,7 +35,7 @@
     text-align: center;
 }
 .wrapper-form-registration input[type="submit"]{
-    background-color: #40EF2D;
+    background-color: var(--color-green-one);
     border-radius: 20px;
     color: white;
 }

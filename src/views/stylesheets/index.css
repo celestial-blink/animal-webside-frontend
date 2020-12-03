@@ -14,6 +14,9 @@
   --color-blue-one:#090eb3;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+.fa{
+  font-family: FontAwesome !important;
+}
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;

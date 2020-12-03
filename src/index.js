@@ -19,30 +19,26 @@ ReactDOM.render(
     <>
       <BrowserRouter>
         <Switch>
-          <Route exact path="/system/admin" component={Systemadmin}/>
-          <Layout>
-            <Route exact path="/">
-              <Home/>
-            </Route>
-            <Route exact path="/information">
-              <Information />
-            </Route>
-            <Route exact path="/login">
-              <Login />
-            </Route>
-            <Route exact path="/galery">
-              <Galery />
-            </Route>
-            <Route exact path="/contact">
-              <Contact />
-            </Route>
-            <Route exact path="/new-animal">
-              <Animalform />
-            </Route>
-            <Route>
-              <Error404 />
-            </Route>
-        </Layout>
+            <Route exact path="/system/admin" component={Systemadmin}/>
+            <Route exact path="/login" component={Login}/>
+            <Layout>
+              <Switch>
+                  <Route exact path="/">
+                      <Home/>
+                  </Route>
+                  <Route exact path="/galery">
+                      <Galery/>
+                  </Route>
+                  <Route exact path="/contact">
+                      <Contact/>
+                  </Route>
+                  <Route exact path="/animal/information" component={Information}/>
+                  <Route exact path="/animal/new" component={Animalform}/>
+                  <Route exact path="*">
+                      <Error404/>
+                  </Route>
+              </Switch>
+            </Layout>
         </Switch>
       </BrowserRouter>
     </>

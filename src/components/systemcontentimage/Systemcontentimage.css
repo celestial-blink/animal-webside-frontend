@@ -69,6 +69,8 @@
     box-sizing: border-box;
     position: relative;
     grid-template-columns: repeat(auto-fill,160px);
+    grid-gap:10px;
+    justify-content: center;
 
 }
 .wrapper-content-card .card-main .card-main-content .card-wrapper-item{
@@ -101,6 +103,7 @@
     padding: 0 5px;
     box-sizing: border-box;
     border:2px solid var(--color-green-one);
+    text-align: center;
 }
 .wrapper-content-card .card-main .card-main-content .card-wrapper-item .card-actions{
     display: flex;

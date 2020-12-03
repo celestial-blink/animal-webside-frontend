@@ -5,7 +5,7 @@ import FormRegister from "../components/formregister/FormRegister";
 import MinFooter from '../components/minfooter/MinFooter';
 
 import Imagen1 from './images/image1.jpg';
-
+import Logo from './images/logo.svg';
 
 const Login =()=>{
     return (
@@ -16,6 +16,10 @@ const Login =()=>{
             <div className="content-login">
                 <FormLogin />
                 <FormRegister />
+                <a href="/">
+                    <img src={Logo} alt="logo"/>
+                </a>
+                <img src={Logo} alt="logo"/>
             </div>
             <MinFooter />
         </>

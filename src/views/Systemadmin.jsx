@@ -1,12 +1,43 @@
+import {useState} from 'react';
+
 import './stylesheets/Systemadmin.css';
 import Logo from './images/logo.svg';
 import Laptop from './images/laptop.svg';
-// import Systemcontentlist from '../components/systemcontentlist/Systemcontentlist';
-import Systemcontentcard from '../components/systemcontentcard/Systemcontentcard';
+import Modal from '../components/modal/modal';
+import Systemcontentanimal from '../components/systemcontentanimal/Systemcontentanimal';
+import Systemcontentimage from '../components/systemcontentimage/Systemcontentimage';
+import Systemcontentknow from '../components/systemcontentknow/Systemcontentknow';
 
 const Systemadmin=()=>{
+
+    const [showModal,setShowModal]=useState(false);
+    const [nameComponent,setNameComponent]=useState("");
+    
+    
+    const handleSelectComponent=(e)=>{
+        e.preventDefault();
+        let name=e.target.getAttribute('href');
+        setNameComponent(name);
+    }
+    
+    const selectComponent=(component)=>{
+        switch (component){
+            case "animal":
+                return <Systemcontentanimal setShowModal={setShowModal}/>
+            case "images":
+                return <Systemcontentimage setShowModal={setShowModal}/>
+            case "know":
+                return <Systemcontentknow setShowModal={setShowModal}/>;
+            case "user":
+                return null;
+            default :
+                return null;
+        }
+    }
+    
     return (
         <>
+        {(showModal)?<Modal namecomponent={nameComponent} setShowModal={setShowModal}/>:null}
             <div className="wrapper-system">
                 <div className="system-navbar">
                     <a href="/" className="system-logo">
@@ -21,13 +52,13 @@ const Systemadmin=()=>{
 
                     <nav className="system-content">
                         <i className="fa fa-paw" aria-hidden="true"></i>
-                        <a href="Animal">Animal</a>
+                        <a href="animal" onClick={handleSelectComponent}>Animal</a>
                         
                         <i className="fa fa-question" aria-hidden="true"></i>
-                        <a href="know">Did you know?</a>
+                        <a href="know" onClick={handleSelectComponent}>Did you know?</a>
                         
                         <i className="fa fa-picture-o" aria-hidden="true"></i>
-                        <a href="Images">Images</a>
+                        <a href="images" onClick={handleSelectComponent}>Images</a>
                     </nav>
 
                     <footer className="system-footer">
@@ -36,7 +67,7 @@ const Systemadmin=()=>{
 
                 </div>
                 <div className="system-main-content">
-                    <Systemcontentcard/>
+                    {selectComponent(nameComponent)}
                 </div>
             </div>
         </>
