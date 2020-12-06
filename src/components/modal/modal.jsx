@@ -12,12 +12,12 @@ const modal=({setShowModal,namecomponent})=>{
     const selectCompoment=(component)=>{
         switch (component){
             case "animal":
-                return <Animalform/>
-            case "know":
-                return <KnowForm/>
-            case "images":
-                return <ImagenForm/>
-            default :
+                    return <Animalform/>;
+                case "images":
+                    return <ImagenForm/>;
+                case "know":
+                    return <KnowForm/>;
+            default:
                 return null;
         }
     }

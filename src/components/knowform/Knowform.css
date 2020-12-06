@@ -18,6 +18,7 @@
     margin: 0;
     font-size: 24px;
     display: inline-block;
+    text-align: center;
 }
 .wrapper-know-form form{
     display: grid;
@@ -37,4 +38,25 @@
     background-color: var(--color-green-one);
     color:white;
     text-transform: uppercase;
+    border-width: 0px;
+}
+.wrapper-know-form form input[type="text"]::focus{
+    border-color: var(--color-green-two);
+}
+.wrapper-know-form form a{
+    text-decoration: none;
+    display: inline-block;
+    background-color: var(--color-green-one);
+    color:white;
+    height: 40px;
+    text-align: center;
+    padding: 10px;
+}
+.wrapper-know-form form legend {
+    background-color:var(--color-blue-two);
+    color:white;
+    text-align: center;
+}
+.wrapper-know-form form textarea{
+    resize: none;
 }

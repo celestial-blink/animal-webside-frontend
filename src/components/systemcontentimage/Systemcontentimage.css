@@ -2,7 +2,7 @@
     height: 100%;
     width: 100%;
     box-sizing: border-box;
-    background-color: var(--color-gray-one);
+    background-color: var(--color-cyan-one);
     display: grid;
     grid-template-columns: 300px 100px 1fr 40px;
     grid-template-rows: 80px 1fr;
@@ -18,16 +18,16 @@
 .wrapper-content-card h1{
     margin: 0;
     padding: 0;
-    color:var(--color-black-one);
+    color:white;
 }
 .wrapper-content-card .card-add-new{
-    color:var(--color-black-one);
+    color:white;
     text-decoration: none;
     font-size: 24px;
     transition: all .4s;
 }
 .wrapper-content-card .card-add-new:hover{
-    color:var(--color-green-one);
+    color:var(--color-blue-one);
     font-weight: bolder;
 }
 
@@ -38,10 +38,16 @@
     outline: none;
     background-color: transparent;
     border-width: 0 0 3px 0;
-    color: var(--color-black-one);
+    color: white;
+    font-size: 16px;
+    border-color: white;
 }
+.wrapper-content-card input[type="search"]::placeholder{
+    color:var(--color-gray-two);
+}
+
 .wrapper-content-card .fa-search{
-    color:var(--color-black-one);
+    color:white;
     font-size: 40px;
 }
 .wrapper-content-card .card-main{
@@ -73,6 +79,14 @@
     justify-content: center;
 
 }
+.wrapper-content-card .card-main .card-main-content::-webkit-scrollbar{
+    background-color: var(--color-gray-one);
+}
+.wrapper-content-card .card-main .card-main-content::-webkit-scrollbar-thumb{
+    background: linear-gradient(var(--color-cyan-one),var(--color-green-two));
+    border-radius: 20px;
+}
+
 .wrapper-content-card .card-main .card-main-content .card-wrapper-item{
     height: 210px;
     width: 100%;
@@ -134,4 +148,7 @@
     text-align: center;
     color:var(--color-black-one);
     font-size: 11px;
+}
+.wrapper-content-card .card-main p{
+    color:white;
 }

@@ -9,6 +9,7 @@
     background-color: var(--color-black-one);
     box-sizing: border-box;
     padding: 5px;
+    grid-gap: 5px;
 }
 .wrapper-animal-form * {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -148,6 +149,20 @@
     height: 30px;
     border-radius: 5px;
     text-transform: uppercase;
+    font-weight: bold;
+}
+.wrapper-animal-form .response{
+    background-color: var(--color-black-two);
+    color: var(--color-gray-two);
+    height: 100%;
+}
+.wrapper-animal-form form legend{
+    height: 100%;
+    background-color: var(--color-blue-two);
+    color:white;
+    min-height: 30px;
+    text-align: center;
+    font-size: 23px;
     font-weight: bold;
 }
 @media (max-width:700px){

@@ -3,6 +3,7 @@
     grid-template-columns: 1fr;
     width: 350px;
     padding: 5px;
+    grid-gap: 5px;
     background-color: var(--color-black-one);
     border-radius: 5px;
 }
@@ -25,6 +26,7 @@
 .wrapper-image-form form{
     display: grid;
     grid-template-columns: subgrid;
+    grid-gap: 5px;
 }
 .wrapper-image-form form input{
     height: 35px;
@@ -36,12 +38,16 @@
     height: 35px;
     width: 100%;
     display: inline-block;
-    background-color: var(--color-black-one);
+    background-color: var(--color-green-one);
     color: white;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     font-size: 13px;
+}
+.wrapper-image-form form input[type="text"]{
+    outline: none;
+    border: 2px solid var(--color-green-one);
 }
 .wrapper-image-form form input[type="file"]{
     display: none;
@@ -53,6 +59,14 @@
     border-width: 2px 0;
     text-transform: uppercase;
 }
-.wrapper-image-form .fa-check{
-    display: none;
+.wrapper-image-form .response{
+    background-color: var(--color-black-two);
+    color: white;
+    text-align: center;
+}
+.wrapper-image-form form legend{
+    background-color: var(--color-blue-two);
+    color: white;
+    text-align: center;
+    font-weight: bold;
 }

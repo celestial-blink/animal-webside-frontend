@@ -7,11 +7,12 @@ import Modal from '../components/modal/modal';
 import Systemcontentanimal from '../components/systemcontentanimal/Systemcontentanimal';
 import Systemcontentimage from '../components/systemcontentimage/Systemcontentimage';
 import Systemcontentknow from '../components/systemcontentknow/Systemcontentknow';
+import Systemcontentmain from '../components/systemcontentmain/Systemcontentmain';
 
 const Systemadmin=()=>{
 
     const [showModal,setShowModal]=useState(false);
-    const [nameComponent,setNameComponent]=useState("");
+    const [nameComponent,setNameComponent]=useState("home");
     
     
     const handleSelectComponent=(e)=>{
@@ -22,6 +23,8 @@ const Systemadmin=()=>{
     
     const selectComponent=(component)=>{
         switch (component){
+            case "home":
+                return <Systemcontentmain setNameComponent={setNameComponent}/>
             case "animal":
                 return <Systemcontentanimal setShowModal={setShowModal}/>
             case "images":
@@ -29,7 +32,7 @@ const Systemadmin=()=>{
             case "know":
                 return <Systemcontentknow setShowModal={setShowModal}/>;
             case "user":
-                return null;
+                return <Systemcontentmain/>;
             default :
                 return null;
         }
@@ -51,6 +54,9 @@ const Systemadmin=()=>{
                     <a href="close-session" className="system-logout"><i className="fa fa-sign-out" aria-hidden="true"></i> log-out</a>
 
                     <nav className="system-content">
+                        <i className="fa fa-home" aria-hidden="true"></i>
+                        <a href="home" onClick={handleSelectComponent}>home</a>
+
                         <i className="fa fa-paw" aria-hidden="true"></i>
                         <a href="animal" onClick={handleSelectComponent}>Animal</a>
                         

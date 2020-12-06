@@ -166,9 +166,9 @@ const Animalform=()=>{
     return (
         <>
         <div className="wrapper-animal-form animate__animated animate__fadeInLeft">
-    <p>insertar nuevo animal</p>
-            <br/>
+            <p className="response">response servidor</p>
             <form method="post" onSubmit={handleSubmitForm}>
+                <legend>Animal</legend>
                 <input type="text" name="title" onChange={addDataText} placeholder="ingrese titulo"/>
                 <textarea name="description" onChange={addDataText} cols="30" rows="10" placeholder="escriba descripcion"></textarea>
     <a href="add-imagen" data-text="imagenid" onClick={handleShowImages}><i className="fa fa-picture-o" aria-hidden="true"></i> add image {(dataAnimal.imagenid!=="")?<i id="icon-check" className="fa fa-check" aria-hidden="true"></i>:null}</a>

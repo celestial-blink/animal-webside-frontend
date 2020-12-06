@@ -35,18 +35,28 @@ const Knowform=()=>{
     const handleFormSubmit=(e)=>{
         e.preventDefault();
         console.log("todos los datos",knowData);
+    };
+
+    const handleShowImagens=(e)=>{
+        e.preventDefault();
+        setShowImagens(true);
+    }
+
+    const addDataImagenid=()=>{
+        if(imagenid!==""){
+            setKnowData({
+                ...knowData,
+                ...{imagenid:imagenid}
+            })
+            setImagenid("");
+        }
     }
 
     const [showimagens,setShowImagens]=useState(false);
     const [imagenid,setImagenid]=useState("");
     useEffect(()=>{
-        if(showimagens){
-            if (imagenid!==""){
-                setKnowData({
-                    ...knowData,
-                    ...{imagenid:imagenid}
-                });
-            }
+        if(showimagens===false){
+            addDataImagenid();
         }
     });
     return (
@@ -57,11 +67,11 @@ const Knowform=()=>{
                     <legend>¿sabías qué?</legend>
                     <input type="text" name="title" onChange={handleSetDataKnow} value={knowData.title} placeholder="ingrese título"/>
                     <textarea name="content" cols="30" onChange={handleSetDataKnow} rows="10" value={knowData.content} placeholder="ingrese description"></textarea>
-                    <a href="add-imagen" onClick={setShowImagens(!showimagens)}><i class="fa fa-picture-o" aria-hidden="true"></i> addimagen {(knowData.imagenid!=="")?<i class="fa fa-check" aria-hidden="true"></i>:null}</a>
+                    <a href="add-imagen" onClick={handleShowImagens}><i className="fa fa-picture-o" aria-hidden="true"></i> addimagen {(knowData.imagenid!=="")?<i className="fa fa-check" aria-hidden="true"></i>:null}</a>
                     <input type="submit" value="PUBLICAR"/>
                 </form>
             </div>
-            {(showimagens)?null:<Showminimagen setShowImagens={setShowImagens} setImagenid={setImagenid}/>}
+            {(showimagens)?<Showminimagen setShowImagens={setShowImagens} setImagenid={setImagenid}/>:null}
         </>
     );
 }
