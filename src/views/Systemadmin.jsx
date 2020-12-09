@@ -8,16 +8,23 @@ import Systemcontentanimal from '../components/systemcontentanimal/Systemcontent
 import Systemcontentimage from '../components/systemcontentimage/Systemcontentimage';
 import Systemcontentknow from '../components/systemcontentknow/Systemcontentknow';
 import Systemcontentmain from '../components/systemcontentmain/Systemcontentmain';
+import Systemcontentprofile from '../components/systemcontentprofile/Systemcontentprofile';
+import MLoader from '../components/MLoader/MLoader';
 
 const Systemadmin=()=>{
 
     const [showModal,setShowModal]=useState(false);
+    const [showLoader,setShowLoader]=useState(false);
     const [nameComponent,setNameComponent]=useState("home");
     
-    
+
+    const handleManageLoader=(show=true)=>{
+        setShowLoader(show);
+    }
+
     const handleSelectComponent=(e)=>{
         e.preventDefault();
-        let name=e.target.getAttribute('href');
+        let name=e.currentTarget.getAttribute('href');
         setNameComponent(name);
     }
     
@@ -31,8 +38,8 @@ const Systemadmin=()=>{
                 return <Systemcontentimage setShowModal={setShowModal}/>
             case "know":
                 return <Systemcontentknow setShowModal={setShowModal}/>;
-            case "user":
-                return <Systemcontentmain/>;
+            case "profile":
+                return <Systemcontentprofile/>
             default :
                 return null;
         }
@@ -40,13 +47,14 @@ const Systemadmin=()=>{
     
     return (
         <>
+        {(showLoader)?<MLoader/>:null}
         {(showModal)?<Modal namecomponent={nameComponent} setShowModal={setShowModal}/>:null}
             <div className="wrapper-system">
                 <div className="system-navbar">
                     <a href="/" className="system-logo">
                         <img src={Logo} alt="logo"/>
                     </a>
-                    <a href="/profile" className="system-imagen">
+                    <a href="profile" className="system-imagen" onClick={handleSelectComponent}>
                         <img src={Laptop} alt="imagen"/>
                         <h4>username</h4>
                         <i className="fa fa-pencil-square-o" aria-hidden="true"></i>

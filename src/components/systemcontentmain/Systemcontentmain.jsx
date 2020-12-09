@@ -17,7 +17,7 @@ const Systemcontentmain=({setNameComponent})=>{
                     <img src={imagen1} alt="user-imagen"/>
                     <h2>my profile</h2>
                     <p>edit and change password</p>
-                    <a href="user" onClick={handleGetNameComponent}>go</a>
+                    <a href="profile" onClick={handleGetNameComponent}>go</a>
                 </div>
 
                 <div className="main-profile">

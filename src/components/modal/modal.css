@@ -13,10 +13,8 @@
     align-items: center;
 }
 .wrapper-modal .content-modal{
-    background-color: white;
     position: relative;
     box-sizing: border-box;
-    padding: 10px;
     display:  flex;
     justify-content: center;
     overflow-y: scroll;
@@ -25,6 +23,7 @@
 }
 .wrapper-modal .content-modal::-webkit-scrollbar{
     background-color: var(--color-gray-one);
+    border-radius: 20px;
 }
 
 .wrapper-modal .content-modal::-webkit-scrollbar-thumb{

@@ -8,6 +8,9 @@ import MLoader from '../components/MLoader/MLoader';
 
 const Layout =({children})=> {
     const [showLoader,setShowLoader]=useState(false);
+    const handleManageLoader=(show=true)=>{
+        setShowLoader(show);
+    }
     return(
         <>
             {(showLoader)?<MLoader/>:null}

@@ -61,7 +61,7 @@ const Knowform=()=>{
     });
     return (
         <>
-            <div className="wrapper-know-form">
+            <div className="wrapper-know-form animate__animated animate__fadeInLeft">
                 <p className="response">response servidor</p>
                 <form action="" method="post" onSubmit={handleFormSubmit}>
                     <legend>¿sabías qué?</legend>

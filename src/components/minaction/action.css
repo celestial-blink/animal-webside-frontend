@@ -2,7 +2,7 @@
     display: grid;
     grid-area: action;
     grid-template-columns: 1fr 1fr;
-    background-color: black;
+    background-color: var(--color-black-one);
     box-sizing: border-box;
     padding: 10px 30px;
 }
@@ -27,7 +27,12 @@
     justify-items: left;
     text-decoration: none;
     color: white;
+    transition: all .3s;
 }
+.wrapper-action span:first-child a:hover{
+    color:var(--color-green-two);
+}
+
 .wrapper-action span:first-child i,
 .wrapper-action span:last-child i{
     grid-row: span 2;
@@ -44,7 +49,12 @@
     text-decoration: none;
     align-items: center;
     justify-items: left;
+    transition: .3s;
 }
+.wrapper-action span:last-child a:hover{
+    color: var(--color-green-two);
+}
+
 .wrapper-action span:last-child p{
     grid-row: span 2;
 }

@@ -30,6 +30,8 @@ const Userform=()=>{
                         ...{email:val}
                     });
                     break;
+            default:
+                break;
         
         }
     }
@@ -44,11 +46,11 @@ const Userform=()=>{
         <div className="wrapper-form-user">
             <p className="response">server response</p>
             <form method="post" onSubmit={handleFormSubmit}>
-                <legend>usuario</legend>
+                <legend>my personal information</legend>
                 <input type="text" name="user" value={dataUser.user} onChange={handleSetData} placeholder="ingrese usuario, no debe tener espacios"/>
                 <input type="text" name="fullname" value={dataUser.fullname} onChange={handleSetData} placeholder="ingrese nombre completo"/>
                 <input type="email" name="email" value={dataUser.email} onChange={handleSetData} placeholder="correo electrónico"/>
-                <input type="submit" value="MODIFICAR"/>
+                <input type="submit" value="MODIFIED"/>
             </form>
         </div>
         </>

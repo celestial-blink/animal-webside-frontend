@@ -10,6 +10,7 @@ import Login from './views/login';
 import Galery from './views/galery';
 import Contact from './views/contact';
 import Error404 from './views/notfound';
+import Allanimals from './views/allAnimals';
 import Animalform from './components/animalform/Animalform';
 
 import Systemadmin from './views/Systemadmin';
@@ -25,6 +26,9 @@ ReactDOM.render(
               <Switch>
                   <Route exact path="/">
                       <Home/>
+                  </Route>
+                  <Route exact path="/all">
+                      <Allanimals/>
                   </Route>
                   <Route exact path="/galery">
                       <Galery/>

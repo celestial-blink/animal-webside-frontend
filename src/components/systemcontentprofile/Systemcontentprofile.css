@@ -1,0 +1,124 @@
+.wrapper-systemcontent-profile{
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: var(--color-black-one);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 210px 40px 1fr;
+    justify-items: center;
+    grid-gap: 10px;
+}
+.wrapper-systemcontent-profile .more{
+    text-decoration: none;
+    color:white;
+    grid-column: span 2;
+    font-size: 18px;
+    font-weight: bold;
+    box-sizing: border-box;
+    padding: 10px 0;
+}
+.wrapper-systemcontent-profile .container-form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column: span 2;
+    width: 100%;
+    height: 0%;
+    transition: all .3s;
+    overflow: hidden;
+}
+.wrapper-systemcontent-profile .profile-information img{
+    object-fit: cover;
+    object-position: center;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border:5px solid var(--color-gray-two);
+    box-sizing: border-box;
+    grid-row: inherit;
+    grid-column: 1;
+    grid-row: span 4;
+}
+.wrapper-systemcontent-profile .profile-information{
+    display: grid;
+    grid-template-columns:1fr 78px 1fr;
+    grid-gap: 10px;
+    grid-template-rows: repeat(4, 1fr);
+    grid-column: span 2;
+    align-items: center;
+}
+.wrapper-systemcontent-profile .profile-information h4{
+    text-align: right;
+    padding: 0;margin: 0;
+    color:var(--color-gray-two);
+    font-size: 15px;
+}
+.wrapper-systemcontent-profile .profile-information p{
+    color:var(--color-gray-two);
+    padding: 0;margin: 0;
+    font-size: 12px;
+}
+
+.wrapper-systemcontent-profile .wrapper-change-password{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content;
+    grid-gap: 5px;
+    justify-items: center;
+    width: 100%;
+}
+.wrapper-systemcontent-profile .wrapper-change-password .response{
+    padding: 0;margin: 0;
+    background-color: var(--color-black-two);
+    color:white;
+    width: calc(100% - 10px);
+    min-height: 35px;
+    text-align: center;
+}
+.wrapper-systemcontent-profile .wrapper-change-password form{
+    box-sizing: border-box;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content;
+    height: 150px;
+    grid-gap: 5px;
+    width: 100%;
+}
+.wrapper-systemcontent-profile .wrapper-change-password form legend{
+    background-color: var(--color-blue-two);
+    color:white;
+    text-align: center;
+}
+.wrapper-systemcontent-profile .wrapper-change-password form input{
+    height: 35px;
+    outline: none;
+    box-sizing: border-box;
+    padding: 0 5px;
+    background-color: transparent;
+    color:white;
+    border-width: 0 0 3px 0;
+    border-color: white;
+    width: 100%;
+    border-style: solid;
+}
+.wrapper-systemcontent-profile .wrapper-change-password form span{
+    position: relative;
+}
+
+.wrapper-systemcontent-profile .wrapper-change-password form input::placeholder{
+    color:var(--color-gray-two);
+}
+.wrapper-systemcontent-profile .wrapper-change-password form a{
+    position: absolute;
+    right: 0;
+    font-size: 20px;
+    color: var(--color-gray-two);
+}
+.wrapper-systemcontent-profile .wrapper-change-password form input[type="submit"]{
+    background-color: var(--color-green-one);
+    color:white;
+    border-width: 0;
+    font-weight: bold;
+}

@@ -11,6 +11,9 @@ const Card = () => {
                     </h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim iure atque neque sequi ad eaque dolore, hic accusantium culpa quasi?</p>
                     <a href="go">Ver más</a>
+                    <p className="date">
+                        12/12/12
+                    </p>
                 </span>
                 <img className="card-imagen" src={Imagen} alt="imagen" />
             </div>

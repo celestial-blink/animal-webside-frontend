@@ -43,7 +43,7 @@ const NavBar = ()=>{
                 </span>
                 
                 <span className="navbar-btn-menu">
-                    <a href="menu" onClick={(e)=>{handleOpenMenu(e)}}>btn</a>
+                    <a href="menu" onClick={(e)=>{handleOpenMenu(e)}}><i className="fa fa-bars" aria-hidden="true"></i> </a>
                 </span>
                 
                 <span className="navbar-navigator" id="navbar-navigator">

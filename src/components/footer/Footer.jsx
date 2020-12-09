@@ -7,10 +7,10 @@ const Footer = () => {
             <h2 className="title-social">Redes sociales</h2>
             <span className="footer-menu">
                 <ul>
-                    <li><a href="inicio">inicio</a></li>
-                    <li><a href="todos">todos</a></li>
-                    <li><a href="galeria">galeria</a></li>
-                    <li><a href="contacto">contacto</a></li>
+                    <li><a href="/">inicio</a></li>
+                    <li><a href="/all">todos</a></li>
+                    <li><a href="/galery">galeria</a></li>
+                    <li><a href="/contact">contacto</a></li>
                 </ul>
             </span>
             <span className="footer-social">
