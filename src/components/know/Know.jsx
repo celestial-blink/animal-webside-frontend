@@ -1,14 +1,17 @@
 import './Know.css';
 import Imagen from './Imagen.jpg';
 
-const Know = ()=>{
+const Know = ({title,content,imagen})=>{
+    const handleLoadErrorImage=(e)=>{
+        e.target.src=Imagen;
+    }
     return (
-        <div className="wrapper-know animate__animated animate__slideInUp">
-            <span className="know-text">
-                <h2>Lorem ipsum dolor sit.</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta unde laborum odio eos est quos, laboriosam modi dolorum tempora quo.</p>
+     <div className="wrapper-know animate__animated animate__slideInUp">
+            <span  className="know-text">
+                <h2 >{title}</h2>
+                <p >{content}</p>
             </span>
-            <img className="know-imagen" src={Imagen} alt="Imagen-know"/>
+            <img onError={handleLoadErrorImage} className="know-imagen" src={imagen} alt="Imagen-know"/>
         </div>
     );
 };

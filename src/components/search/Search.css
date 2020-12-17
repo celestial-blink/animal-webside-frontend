@@ -10,7 +10,7 @@
 .wrapper-search>*{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.wrapper-search input[type="text"]{
+.wrapper-search input[type="search"]{
     width: 90%;
     height: 50%;
     border-radius: 20px;
@@ -21,6 +21,10 @@
     color: #878787;
     font-weight: bold;
 }
+.wrapper-search input[type="search"]::-webkit-search-cancel-button{
+    padding-right: 10px;
+}
+
 .wrapper-search a{
     height: 37px;
     width: 37px;

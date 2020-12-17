@@ -14,6 +14,7 @@
   --color-cyan-one:#02c1c1;
   --color-blue-one:#090eb3;
   --color-blue-two:#3e5ef9;
+  --color-purple-two:#882bef;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .fa{
@@ -56,6 +57,45 @@ code {
   background-color:#878787;
   margin: 20px 0;
 }
+.error{
+  background-color: var(--color-red-two) !important;
+  color:white;
+}
+.success{
+  background-color: var(--color-green-one) !important;
+  color:white;
+}
+.loading{
+  font-weight: bold;
+  font-size: 40px;
+  animation: loading alternate infinite 1s;
+  background: linear-gradient(45deg,var(--color-blue-two) 10%,var(--color-red-two));
+  background-clip: text;
+  color:transparent;
+  width: max-content;
+}
+.btn-more{
+  background-color: var(--color-green-one);
+  color:white;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+  box-sizing: border-box;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+}
+h2{
+  padding: 0;margin: 0;
+  margin-bottom: 15px;
+  font-size: 30px;
+  color:var(--color-black-one);
+}
+@keyframes loading{
+    to{
+      letter-spacing: 5px;
+    }
+}
 @media (max-width:800px){
   .content{
     grid-template-columns: 1fr;
@@ -72,6 +112,9 @@ code {
   }
   .container{
     margin: 50px 0 0 0;
+  }
+  h2{
+    text-align: center;
   }
 }
 @media (max-width:530px){

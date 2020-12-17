@@ -1,10 +1,13 @@
 import './PhotoImagen.css';
-import Imagen1 from './imagen1.jpg';
+import Imagen from './ImageNotFound.svg';
 
-const PhotoImagen=()=>{
+const PhotoImagen=({imagen})=>{
+    const handleErrorImagen=(e)=>{
+        e.target.src=Imagen;
+    }
     return (
         <>
-            <img className="img-photo animate__animated animate__bounceIn" src={Imagen1} alt="imagen"/>
+            <img src={imagen} onError={handleErrorImagen} className="img-photo animate__animated animate__bounceIn" alt="imagen"/>
         </>
     );
 }

@@ -28,6 +28,14 @@
     position: relative;
     grid-row-end: span 1;
 }
+.wrapper-images .btn-images{
+    width: 100%;
+    grid-column: 1 / -1;
+}
+.wrapper-images .response{
+    margin: 0;padding: 0;
+    height: min-content;
+}
 @media (max-width:700px){
     .wrapper-images{
         margin: 0;

@@ -3,7 +3,7 @@
     width: 100%;
     box-sizing: border-box;
     padding: 10px;
-    background-color: var(--color-black-one);
+    background: linear-gradient(-50deg,var(--color-cyan-one),var(--color-purple-two));
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 210px 40px 1fr;
@@ -42,7 +42,7 @@
 }
 .wrapper-systemcontent-profile .profile-information{
     display: grid;
-    grid-template-columns:1fr 78px 1fr;
+    grid-template-columns:1fr 90px 1fr;
     grid-gap: 10px;
     grid-template-rows: repeat(4, 1fr);
     grid-column: span 2;
@@ -87,7 +87,7 @@
     width: 100%;
 }
 .wrapper-systemcontent-profile .wrapper-change-password form legend{
-    background-color: var(--color-blue-two);
+    background-color: var(--color-blue-one);
     color:white;
     text-align: center;
 }

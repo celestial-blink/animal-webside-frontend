@@ -34,6 +34,14 @@
 .wrapper-form-registration input::placeholder{
     text-align: center;
 }
+.wrapper-form-registration .response{
+    padding: 0;margin: 0;
+    background-color: var(--color-black-two);
+    color:white;
+    text-align: center;
+    font-size: 13px;
+    height: min-content;
+}
 .wrapper-form-registration input[type="submit"]{
     background-color: var(--color-green-one);
     border-radius: 20px;

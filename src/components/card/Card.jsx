@@ -1,23 +1,25 @@
 import './Card.css';
-import Imagen from './Imagen.png';
+import Imagen from './ImageNotFound.svg';
 
-const Card = () => {
+const Card = ({title,description,date,imagen,alldate}) => {
+    const handleLoadErrorImage=(e)=>{
+        e.target.src=Imagen;
+    }
     return (
-        <>
             <div className="wrapper-card animate__animated animate__backInLeft">
                 <span className="card-text">
                     <h2>
-                        Lorem ipsum dolor sit.
+                        {title}
                     </h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim iure atque neque sequi ad eaque dolore, hic accusantium culpa quasi?</p>
-                    <a href="go">Ver más</a>
+                    <p>{description}</p>
+                    <a href={`${"/animal/information"}?title=${title}&imagen=${imagen}&description=${description}&feeding=${alldate.feeding}&feedingimagen=${alldate.feedingImagen.pathimagen}${alldate.inhabit.map((ele)=>{return `&inhabit=${ele[0]}>${ele[1]}`})}${alldate.inhabitImagen.map((ele)=>{return `&inhabitImagen=${ele.pathimagen}`})}&user=${alldate.user[0].user}`}
+                    >Ver más</a>
                     <p className="date">
-                        12/12/12
+                        {date.split('T')[0]}
                     </p>
                 </span>
-                <img className="card-imagen" src={Imagen} alt="imagen" />
+                <img onError={handleLoadErrorImage} className="card-imagen" src={imagen} alt="imagen" />
             </div>
-        </>
     );
 };
 

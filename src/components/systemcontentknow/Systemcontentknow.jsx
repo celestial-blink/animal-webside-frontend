@@ -1,15 +1,99 @@
+import {useState,useEffect,Fragment} from 'react';
 import './Systemcontentknow.css';
 
 const Systemcontentknow=({setShowModal})=>{
+    const [dataKnow,setDataKnow]=useState({
+        know:[],
+        page:1,
+        pages:1
+    });
+
+    const [dataFilter,setDataFilter]=useState({
+        know:[],
+        page:1,
+        pages:1
+    });
+
+    const [filter,setFilter]=useState("");
+    const [showContent,setShowContent]=useState(false);
+    const [response,setResponse]=useState("");
+
+    const getDataFromServer=async(filter)=>{
+        let data=await fetch(`http://127.0.0.1:3030/know?action=get-data-know${filter}`,{
+        method:'GET'
+        });
+
+        return await data.json();
+    }
+    const setDataForFilter=()=>{
+        setResponse("");
+        if(filter.trim()!==""){
+                    setShowContent(false);
+                    getDataFromServer(`&filter=${filter}`).then(res=>{
+                        setShowContent(true);
+                        if(res.state){
+                            setDataFilter({
+                                know:res.info,
+                                page:res.page,
+                                pages:res.pages
+                            });
+                        }else{
+                            setDataFilter({
+                                know:[],
+                                page:0,
+                                pages:0
+                            });
+                            console.log(res);
+                            setResponse(res.info);
+                        }
+                    }).catch(err=>{
+                        console.log(err);
+                    });
+        }
+    }
+
+    const handleSearchKnow=(e)=>{
+        let val=e.currentTarget.value;
+        if (val===""){
+            setFilter(val);
+        }
+        e.currentTarget.onsearch=()=>{
+            setFilter(val);
+        }
+    }
+
+    useEffect(
+        setDataForFilter
+    ,[filter]);
+
     const handleOpenModal=(e)=>{
         e.preventDefault();
         setShowModal(true);
     }
-    const knowItem=()=>{
+
+    useEffect(()=>{
+        getDataFromServer("").then(res=>{
+            setShowContent(true);
+            if (res.state){
+                setDataKnow({
+                    know:res.info,
+                    page:res.page,
+                    pages:res.pages
+                });
+            }else{
+                console.log(res);
+                setResponse(res.info);
+            }
+        }).catch(err=>{
+            console.log(err);
+        });
+    },[]);
+
+    const knowItem=(title,date,k)=>{
         return (
-            <div className="know-wrapper-item">
-                <h4>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h4>
-                <h5>12/12/12</h5>
+            <div className="know-wrapper-item" k={k}>
+                <h4>{title}</h4>
+                <h5>{date.split('T')[0]}</h5>
                 <span className="item-actions">
                     <a href="edit">
                         <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
@@ -29,21 +113,26 @@ const Systemcontentknow=({setShowModal})=>{
                 <a href="add-new" className="know-add-new" onClick={handleOpenModal}>
                     <i className="fa fa-plus" aria-hidden="true"></i> new
                 </a>
-                <input type="search" name="" placeholder="search..."/>
+                <input type="search" onChange={handleSearchKnow} placeholder="search..." />
                 <i className="fa fa-search" aria-hidden="true"></i>
                 <div className="know-main">
-                    <p>100 result</p>
+                    <p>{(filter==="")?`${dataKnow.know.length} result`:`${dataFilter.know.length} result`}</p>
                     <h3>title</h3>
                     <h3>date</h3>
                     <h3>actions</h3>
                     <div className="know-main-content">
-                        {knowItem()}
-                        {knowItem()}
-                        {knowItem()}
-                        {knowItem()}
-                        {knowItem()}
-                        {knowItem()}
-                        {knowItem()}
+                    {(response!=="")?<p className="response">{response}</p>:null}
+                    {(showContent===false)?<p className="loading">loading...</p>
+                        :(filter==="")?dataKnow.know.map((ele,key)=>(
+                        <Fragment key={ele._id}>
+                            {knowItem(ele.title,ele.date,key)}
+                        </Fragment>))
+                        :dataFilter.know.map((ele,key)=>(
+                        <Fragment key={ele._id}>
+                            {knowItem(ele.title,ele.date,key)}
+                        </Fragment>
+                        ))
+                        }
                     </div>
                 </div>
             </div>

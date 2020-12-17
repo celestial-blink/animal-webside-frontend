@@ -1,7 +1,6 @@
 .wrapper-form-user{
     display: grid;
     grid-template-columns: 1fr;
-    background-color: var(--color-black-one);
     grid-gap: 5px;
     width: 100%;
     height: 50%;
@@ -30,7 +29,7 @@
     grid-template-rows: inherit;
 }
 .wrapper-form-user form legend{
-    background-color: var(--color-blue-two);
+    background-color: var(--color-blue-one);
     color:white;
     font-weight: bold;
     text-align: center;

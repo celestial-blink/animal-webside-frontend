@@ -4,7 +4,7 @@
     box-sizing: border-box;
     padding: 10px;
     grid-template-columns: repeat(3, 1fr);
-    background-color: var(--color-cyan-one);
+    background: linear-gradient(-50deg,var(--color-cyan-one),var(--color-purple-two));
     height: 100%;
     width: 100%;
     grid-template-rows: min-content;
@@ -28,6 +28,7 @@
     grid-gap: 5px;
     background-color: var(--color-blue-two);
     border-radius: 10px;
+    box-shadow: 0 0 5px black;
 }
 .wrapper-systemcontent-main .main-profile img{
     object-fit: cover;
@@ -41,6 +42,7 @@
 .wrapper-systemcontent-main .main-profile h2{
     padding: 0;margin: 0; 
     color:white;
+    font-size: 18px;
 }
 .wrapper-systemcontent-main .main-profile p{
     padding: 0;margin: 0;

@@ -20,6 +20,16 @@ const Systemcontentprofile = () => {
         setOpenMore(!openMore);
     }
 
+    const handleShowPassword=(e)=>{
+        e.preventDefault();
+        let input=e.currentTarget.previousElementSibling;
+        if(input.getAttribute('type')==="password"){
+            input.setAttribute('type','text');
+        }else{
+            input.setAttribute('type','password');
+        }
+    }
+
     return (
         <>
             <div className="wrapper-systemcontent-profile">
@@ -39,19 +49,19 @@ const Systemcontentprofile = () => {
                             <legend>change your password</legend>
                             <span>
                                 <input type="password" name="" placeholder="new password"/>
-                                <a href="show">
+                                <a href="show" onClick={handleShowPassword}>
                                     <i className="fa fa-eye" aria-hidden="true"></i>
                                 </a>
                             </span>
                             <span>
                                 <input type="password" name="" placeholder="repeat new password"/>
-                                <a href="show">
+                                <a href="show" onClick={handleShowPassword}>
                                     <i className="fa fa-eye" aria-hidden="true"></i>
                                 </a>
                             </span>
                             <span>
                                 <input type="password" name="" placeholder="current password"/>
-                                <a href="show">
+                                <a href="show" onClick={handleShowPassword}>
                                     <i className="fa fa-eye" aria-hidden="true"></i>
                                 </a>
                             </span>

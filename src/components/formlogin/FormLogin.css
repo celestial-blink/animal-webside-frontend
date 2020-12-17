@@ -40,3 +40,12 @@
     background-color: var(--color-green-one);
     color:white;
 }
+.wrapper-form-login .response{
+    padding: 0;margin: 0;
+    grid-column: span 2;
+    background-color: var(--color-black-two);
+    color:white;
+    text-align: center;
+    font-size: 13px;
+    height: min-content;
+}

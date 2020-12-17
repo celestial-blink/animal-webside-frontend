@@ -2,7 +2,7 @@
     height: 100%;
     width: 100%;
     box-sizing: border-box;
-    background-color: var(--color-cyan-one);
+    background: linear-gradient(-50deg,var(--color-cyan-one),var(--color-purple-two));
     display: grid;
     grid-template-columns: 300px 100px 1fr 40px;
     grid-template-rows: 80px 1fr;
@@ -77,10 +77,11 @@
     grid-template-columns: repeat(auto-fill,160px);
     grid-gap:10px;
     justify-content: center;
-
+    box-shadow: 0 5px 5px black;
 }
 .wrapper-content-card .card-main .card-main-content::-webkit-scrollbar{
     background-color: var(--color-gray-one);
+    border-radius: 10px;
 }
 .wrapper-content-card .card-main .card-main-content::-webkit-scrollbar-thumb{
     background: linear-gradient(var(--color-cyan-one),var(--color-green-two));
@@ -104,7 +105,7 @@
     object-position: center;
     height: 100%;
     width: 100%;
-    background-color: var(--color-black-one);
+    background-color: white;
     color:var(--color-gray-two);
     border: 2px solid var(--color-green-one);
     box-sizing: border-box;

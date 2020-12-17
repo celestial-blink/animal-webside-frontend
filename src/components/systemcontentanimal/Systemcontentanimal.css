@@ -2,7 +2,7 @@
     height: 100%;
     width: 100%;
     box-sizing: border-box;
-    background-color: var(--color-cyan-one);
+    background: linear-gradient(-50deg,var(--color-cyan-one),var(--color-purple-two));
     display: grid;
     grid-template-columns: 300px 100px 1fr 40px;
     grid-template-rows: 80px 1fr;
@@ -78,9 +78,11 @@
     border:3px solid white;
     box-sizing: border-box;
     padding-bottom: 5px;
+    box-shadow: 0 5px 5px black;
 }
 .wrapper-content-list .list-main .list-main-content::-webkit-scrollbar{
     background-color: var(--color-gray-one);
+    border-radius: 10px;
 }
 
 .wrapper-content-list .list-main .list-main-content::-webkit-scrollbar-thumb{
@@ -91,18 +93,17 @@
 .wrapper-content-list .list-main .list-main-content .list-wrapper-item{
     display: grid;
     grid-template-columns: 20% 40% 20% 20%;
-    
     grid-column: inherit;
     align-items: center;
     justify-items: self-start;
     box-sizing: border-box;
     padding: 5px;
-    background-color: var(--color-black-two);
-    color:var(--color-gray-one);
+    background-color: var(--color-blue-two);
+    color:white;
 }
 .wrapper-content-list .list-main .list-main-content .list-wrapper-item:nth-child(2n){
     background-color: var(--color-gray-two);
-    color:var(--color-black-two);
+    color:var(--color-black-one);
 }
 .wrapper-content-list .list-main .list-main-content .list-wrapper-item > *{
     margin: 0;

@@ -52,15 +52,15 @@ const NavBar = ()=>{
                     </span>
 
                     <span data-text="Todos">
-                        <Link to="all" onClick={(e)=>{handleCloseMenu(e);}}>Todos</Link>
+                        <Link to="/all" onClick={(e)=>{handleCloseMenu(e);}}>Todos</Link>
                     </span>
 
                     <span data-text="Galeria">
-                        <Link to="galery" onClick={(e)=>{handleCloseMenu(e);}}>Galeria</Link>
+                        <Link to="/galery" onClick={(e)=>{handleCloseMenu(e);}}>Galeria</Link>
                     </span>
 
                     <span data-text="Contacto">
-                        <Link to="contact" onClick={(e)=>{handleCloseMenu(e);}}>Contacto</Link>
+                        <Link to="/contact" onClick={(e)=>{handleCloseMenu(e);}}>Contacto</Link>
                     </span>
                 </span>
             </nav>

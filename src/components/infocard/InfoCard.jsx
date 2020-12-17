@@ -1,25 +1,51 @@
+import {Fragment} from 'react';
 import './InfoCard.css';
-import Imagen1 from './image1.jpg';
-import Imagen2 from './image2.jpg';
-import Imagen3 from './image3.jpg';
-import Imagen4 from './image4.jpg';
+
+import Imagen from './ImageNotFound.svg'
 
 const InfoCard = ()=>{
+    let params=new URLSearchParams(window.location.search);
+
+
+    const controllerDataInhabit=(arr)=>{
+        let transform=arr.map(ele=>{return ele.split('>')});
+        return transform;
+    }
+    const controllerDataInhabitImgen=(arr)=>{
+        let transform =arr.map(ele=>(ele.replace(',','')));
+        return transform;
+    };
+    let dataCard={
+        title:params.get('title'),
+        imagen:params.get('imagen'),
+        description:params.get('description'),
+        feeding:params.get('feeding'),
+        feedingimagen:params.get('feedingimagen'),
+        inhabitimagen:controllerDataInhabitImgen(params.getAll('inhabitImagen')),
+        inhabit:controllerDataInhabit(params.getAll('inhabit')),
+        user:params.get('user')
+    }
+    const handleErrorImage=(e)=>{
+        e.target.src=Imagen;
+    }
+    
     return (
         <>
             <div className="wrapper-infocard">
-            <h2>Lorem ipsum dolor sit.</h2>
-                <img className="img-primary" src={Imagen1} alt="imagen"/>
-                <p className="text-primary">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis, reprehenderit. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit laudantium provident impedit! Facere eligendi cupiditate blanditiis eum iure consequatur corporis. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut nam ea voluptas nihil unde perferendis ab eaque minus consectetur odit!</p>
-                <h2>Lorem ipsum dolor sit.</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis quod placeat assumenda eos provident quaerat!</p>
-                <img className="img-secondary img-round" src={Imagen2} alt="imagen"/>
-                <h2>Lorem ipsum dolor sit amet.</h2>
-                <img className="img-thrid" src={Imagen3} alt="imagen"/>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum, illo.</p>
-                <img className="img-thrid" src={Imagen4} alt="imagen" />
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-                <p className="text-auth">Lorem ipsum dolor sit amet.</p>
+                <h2>{dataCard.title}</h2>
+                <img className="img-primary" onError={handleErrorImage} src={dataCard.imagen} alt="imagen"/>
+                <p className="text-primary">{dataCard.description}</p>
+                <h2>feeding</h2>
+                <p>{dataCard.feeding}</p>
+                <img className="img-secondary img-round" onError={handleErrorImage} src={dataCard.feedingimagen} alt="imagen"/>
+                <h2>inhabit</h2>
+                {
+                     dataCard.inhabit.map((ele,key)=>{
+                         return  <Fragment key={key}><img className="img-thrid" onError={handleErrorImage} src={dataCard.inhabitimagen[key]} alt="imagen"/>
+                                 <p><strong>{ele[0]}</strong>: {ele[1]}</p></Fragment>
+                     })
+                }
+                <p className="text-auth">{dataCard.user}</p>
             </div>
         </>
     );
