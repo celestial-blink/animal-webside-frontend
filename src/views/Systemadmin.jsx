@@ -1,4 +1,5 @@
-import {useState} from 'react';
+import {useState,useEffect} from 'react';
+import {useHistory} from 'react-router-dom'
 
 import './stylesheets/Systemadmin.css';
 import Logo from './images/logo.svg';
@@ -11,44 +12,131 @@ import Systemcontentmain from '../components/systemcontentmain/Systemcontentmain
 import Systemcontentprofile from '../components/systemcontentprofile/Systemcontentprofile';
 import MLoader from '../components/MLoader/MLoader';
 
+
 const Systemadmin=()=>{
+    const history=useHistory();
+
+    const [mount,setMount]=useState(false);
 
     const [showModal,setShowModal]=useState(false);
-    const [showLoader,setShowLoader]=useState(false);
+    const [showLoader,setShowLoader]=useState(true);
+    const [updateNewData,setUpdateNewData]=useState(false);
     const [nameComponent,setNameComponent]=useState("home");
+    const [getDataUpdate,setDataUpdate]=useState({});
     
+    // data from server response
+    const [dataUser,setDataUser]=useState({
+        _id:"",
+        user:"",
+        email:"",
+        fullname:"",
+        date:""
+    });
+
+    const getSession=async(signa)=>{
+        let msesion=await fetch(`/user/verifiedsession`,{
+            signal:signa
+        });
+        return await msesion.json();
+    }
 
     const handleManageLoader=(show=true)=>{
         setShowLoader(show);
     }
 
+    //useEffect when mount component
+    useEffect(()=>{
+        setTimeout(() => {
+            handleManageLoader(false);
+        }, 500);
+    },[]);
+
+
     const handleSelectComponent=(e)=>{
         e.preventDefault();
         let name=e.currentTarget.getAttribute('href');
+        handleManageLoader(true);
         setNameComponent(name);
     }
     
     const selectComponent=(component)=>{
         switch (component){
             case "home":
-                return <Systemcontentmain setNameComponent={setNameComponent}/>
+                return <Systemcontentmain handleManageLoader={handleManageLoader} updateNewData={updateNewData} setUpdateNewData={setUpdateNewData} setNameComponent={setNameComponent}/>
             case "animal":
-                return <Systemcontentanimal setShowModal={setShowModal}/>
+                return <Systemcontentanimal setDataUpdate={setDataUpdate} handleManageLoader={handleManageLoader} updateNewData={updateNewData} setUpdateNewData={setUpdateNewData} setShowModal={setShowModal}/>
             case "images":
-                return <Systemcontentimage setShowModal={setShowModal}/>
+                return <Systemcontentimage handleManageLoader={handleManageLoader} updateNewData={updateNewData} setUpdateNewData={setUpdateNewData}  setShowModal={setShowModal}/>
             case "know":
-                return <Systemcontentknow setShowModal={setShowModal}/>;
+                return <Systemcontentknow setDataUpdate={setDataUpdate} handleManageLoader={handleManageLoader} updateNewData={updateNewData} setUpdateNewData={setUpdateNewData} setShowModal={setShowModal}/>;
             case "profile":
-                return <Systemcontentprofile/>
+                return <Systemcontentprofile dataUser={dataUser} handleManageLoader={handleManageLoader}/>
             default :
                 return null;
         }
+    };
+
+    const handleLoguot=(e)=>{
+        e.preventDefault();
+        console.log(dataUser._id,"take");
+        if(dataUser._id!=="" || dataUser._id!==undefined){
+            fetch("/logout",{
+                method:'GET',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                credentials:'same-origin'
+            }).then(res=>{
+                return res.json();
+            }).then(dataj=>{
+                if(dataj.state){
+                    history.push("/login");
+                }else{
+                    console.log(dataj);
+                }
+            }).catch(err=>{
+                console.log(err);
+            }).finally(()=>{
+                handleManageLoader(false);
+            })
+        }
     }
-    
+
+     useEffect(()=>{
+        setMount(true);
+        const abortController=new AbortController();
+        const signa=abortController.signal;
+         getSession(signa).then(res=>{
+             console.log(res);
+             if(res.state){
+                 if (res.info.session===false){
+                     history.push('/login');
+                 }else{
+                     setDataUser({
+                         _id:res.info.user._id,
+                         user:res.info.user.user,
+                         email:res.info.user.email,
+                         fullname:res.info.user.fullname,
+                         date:res.info.user.date
+                     })
+                 }
+             }
+         }).catch(err=>{
+             console.log(err,"take");
+             history.push("/");
+         });
+         const cleanup=()=>{
+            abortController.abort();
+         }
+         return cleanup;
+     },[history]);
+    if(!mount){
+        return null;
+    }
     return (
         <>
         {(showLoader)?<MLoader/>:null}
-        {(showModal)?<Modal namecomponent={nameComponent} setShowModal={setShowModal}/>:null}
+        {(showModal)?<Modal getDataUpdate={getDataUpdate} namecomponent={nameComponent} setUpdateNewData={setUpdateNewData} handleManageLoader={handleManageLoader} setShowModal={setShowModal}/>:null}
             <div className="wrapper-system">
                 <div className="system-navbar">
                     <a href="/" className="system-logo">
@@ -59,7 +147,7 @@ const Systemadmin=()=>{
                         <h4>username</h4>
                         <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </a>
-                    <a href="close-session" className="system-logout"><i className="fa fa-sign-out" aria-hidden="true"></i> log-out</a>
+                    <a href="close-session" onClick={handleLoguot} className="system-logout"><i className="fa fa-sign-out" aria-hidden="true"></i> log-out</a>
 
                     <nav className="system-content">
                         <i className="fa fa-home" aria-hidden="true"></i>

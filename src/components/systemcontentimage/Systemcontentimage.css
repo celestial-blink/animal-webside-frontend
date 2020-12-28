@@ -27,7 +27,7 @@
     transition: all .4s;
 }
 .wrapper-content-card .card-add-new:hover{
-    color:var(--color-blue-one);
+    color:var(--color-cyan-two);
     font-weight: bolder;
 }
 
@@ -120,6 +120,10 @@
     border:2px solid var(--color-green-one);
     text-align: center;
 }
+.wrapper-content-card .card-main .card-main-content .card-wrapper-item input:focus{
+    color: var(--color-green-one);
+}
+
 .wrapper-content-card .card-main .card-main-content .card-wrapper-item .card-actions{
     display: flex;
     justify-content: space-between;
@@ -129,7 +133,7 @@
     display: inline-block;
     width: 84%;
     text-align: center;
-    background-color: var(--color-green-one);
+    background-color: var(--color-black-two);
     color:white;
     border-radius: 10px;
 }
@@ -150,6 +154,28 @@
     color:var(--color-black-one);
     font-size: 11px;
 }
+.wrapper-content-card .card-main .card-main-content .card-wrapper-item .card-response{
+    padding: 0;
+    height: min-content;
+    width: 80px;
+    position: absolute;
+    border-radius: 10px;
+    background-color: var(--color-green-one);
+    color: white;
+    text-align: center;
+    font-size: 13px;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 5%;
+    opacity: 0;
+    transition: all 1s;
+}
+
 .wrapper-content-card .card-main p{
     color:white;
+}
+/*  */
+.wrapper-content-card .btn-enabled{
+    background-color: var(--color-green-one) !important;
 }

@@ -1,14 +1,19 @@
+import {useEffect} from 'react';
+
 import './Systemcontentmain.css';
 import imagen1 from './profile.svg';
 import imagen2 from './animal.svg';
 import imagen3 from './know.svg';
 import imagen4 from './image.svg';
 
-const Systemcontentmain=({setNameComponent})=>{
+const Systemcontentmain=({setNameComponent,handleManageLoader})=>{
     const handleGetNameComponent=(e)=>{
         e.preventDefault();
         setNameComponent(e.target.getAttribute('href'));
     }
+    useEffect(()=>{
+        handleManageLoader(false);
+    },[handleManageLoader])
     return (
         <>
          <div className="wrapper-systemcontent-main">

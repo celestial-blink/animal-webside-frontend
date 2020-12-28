@@ -23,7 +23,7 @@
     transition: all .4s;
 }
 .wrapper-content-know .know-add-new:hover{
-    color:var(--color-blue-one);
+    color:var(--color-cyan-two);
     font-weight: bolder;
 }
 

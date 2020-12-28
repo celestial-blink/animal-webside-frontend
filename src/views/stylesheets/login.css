@@ -13,17 +13,72 @@
     object-position: center;
     filter:opacity(.5);
   }
+
+  .login-logo{
+    position: relative;
+    z-index: 10;
+    display: block;
+    width: 100%;
+  }
+  .login-logo img{
+    width: 50%;
+    height: 80px;
+  }
+
   
   .content-login{
     display: grid;
-    grid-template-columns: 350px 1fr;
-    grid-template-areas: 'formulario1 imagen1' 'formulario2 imagen2';
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'two one';
     grid-gap:20px;
-    grid-template-rows: min-content;
-    width: 100%;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 75%;
+    width: 85%;
+    border-radius: 10px;
+    box-shadow: 0 0 15px black;
+    background-color: rgb(255 255 255/50%);
     box-sizing: border-box;
-    padding: 8%;
+    overflow: hidden;
   }
+
+  .content-login .content-signup{
+    height: 100%;
+    width: 100%;
+    grid-area: two;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 30px 1fr;
+    justify-items: center;
+    background-color: var(--color-green-one);
+    box-sizing: border-box;
+  }
+  .content-login .content-signup svg{
+    position: absolute;
+    left:10%;
+  }
+
+  .content-login .content-signin{
+    display: grid;
+    grid-area: one;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    grid-template-rows: 100px 30px 30px 1fr 1fr;
+    align-items: self-end;
+  }
+
+  .content-login .content-signin h1,
+    .content-login .content-signin h5{
+    color: var(--color-black-one);
+    margin: 0;
+    text-align: center;
+    padding: 0;
+  }
+
   .content-login img{
     object-fit: contain;
     height: 100%;
@@ -34,20 +89,34 @@
     min-height: 80px;
     grid-area: imagen1;
   }
-  .content-login>img:last-child{
-    grid-area: imagen2;
-    padding: 0;
-    object-fit: cover;
-  }
 
-  @media (max-width:520px){
-    .content-login{
-      grid-template-columns: 1fr;
-      grid-template-areas:'imagen1' 'formulario1' 'formulario2';
-      margin-bottom: 20px;
+  @media (max-width:930px){
+    .login-logo{
+      text-align: left;
+      margin-left: 8%;
     }
-    .content-login>img:last-child{
+    .login-logo img{
+      height: 50px;
+    }
+    .content-login{
+      height: 100%;
+      grid-template-columns: 1fr;
+      grid-template-rows: 300px 1fr;
+      grid-template-areas: 'one' 'two';
+      position: relative;
+      margin-bottom: 50px;
+    } 
+    .content-login .content-signup svg{
       display: none;
     }
+  }
 
+  @media (max-width:400px){
+    .content-login{
+      margin:0 0px 40px;
+      width: 100%;
+    }
+    .login-logo{
+      margin: 0;
+    }
   }

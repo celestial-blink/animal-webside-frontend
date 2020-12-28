@@ -1,8 +1,10 @@
 import {useState,useEffect} from 'react';
 import Showminimagen from '../showminimagen/Showminimagen';
 
+import Imagen1 from './Imagen.svg';
+
 import './Animalform.css';
-const Animalform=()=>{
+const Animalform=({getDataUpdate,handleManageLoader})=>{
     const [dataAnimal,setDataAnimal]=useState({
         _id:"",
         title:"",
@@ -13,47 +15,50 @@ const Animalform=()=>{
         inhabit:[],
         inhabitimagenid:[],
         tags:[],
-        date:"",
-        userid:"",
+        userid:"5fd17fdc7ed90014747b1622",
+        action:"insert"
     });
 
     const handleDeleteItem=(e)=>{
         e.preventDefault();
-        let k=parseInt(e.target.parentElement.getAttribute("k"));
-        let nwinhabit=dataAnimal.inhabit.filter((ele,key)=>(
-            key!==k
-        ));
-        let nwinhabitimagenid=dataAnimal.inhabitimagenid.filter((ele,key)=>(
-            key!==k
-        ));
-        setDataAnimal({
-            ...dataAnimal,
-            ...{inhabit:nwinhabit,inhabitimagenid:nwinhabitimagenid}
-        })
-    }
+        let k=parseInt(e.currentTarget.getAttribute("k"));
+        if(!isNaN(k)){
+            let nwinhabit=dataAnimal.inhabit.filter((ele,key)=>(
+                key!==k
+                ));
+                let nwinhabitimagenid=dataAnimal.inhabitimagenid.filter((ele,key)=>(
+                    key!==k
+                    ));
+                    setDataAnimal({
+                        ...dataAnimal,
+                        ...{inhabit:nwinhabit,inhabitimagenid:nwinhabitimagenid}
+                    })
+                }
+        }
 
     const handleEditItem=(e)=>{
         e.preventDefault();
-        let k=parseInt(e.target.parentElement.getAttribute('k'));
-        console.log(k);
-        let title=document.querySelector("#title-inhabit");
-        let description=document.querySelector("#description-inhabit");
-        title.value=dataAnimal.inhabit[k][0];
-        description.value=dataAnimal.inhabit[k][1];
-        setImagenid(dataAnimal.inhabitimagenid[k]);
-        title.focus();
-        let datainh=dataAnimal.inhabit;
-        let datainhi=dataAnimal.inhabitimagenid;
-        datainh.splice(k,1);
-        datainhi.splice(k,1);
-        setDataAnimal({
+        let k=parseInt(e.currentTarget.getAttribute('k'));
+        if(!isNaN(k)){
+            let title=document.querySelector("#title-inhabit");
+            console.log(k);
+            let description=document.querySelector("#description-inhabit");
+            title.value=dataAnimal.inhabit[k][0];
+            description.value=dataAnimal.inhabit[k][1];
+            setImagenid(dataAnimal.inhabitimagenid[k]);
+            title.focus();
+            let datainh=dataAnimal.inhabit;
+            let datainhi=dataAnimal.inhabitimagenid;
+            datainh.splice(k,1);
+            datainhi.splice(k,1);
+            setDataAnimal({
             ...dataAnimal,
             ...{
                 inhabit:datainh,
                 inhabitimagenid:datainhi
             }
-        })
-        console.log(datainh,datainhi);
+        });
+    }
     }
 
     const handleAddInhabitItem=(e)=>{
@@ -80,21 +85,23 @@ const Animalform=()=>{
     }
 
     const addImagenData=()=>{
-        if(imagenid!==""){
-            if (targetImagen==="imagenid"){
-                setDataAnimal({
-                    ...dataAnimal,
-                    ...{imagenid:imagenid}
-                });
-                setImagenid("");
-                setTargetImagen("");
-            }else if(targetImagen==="feedingimagenid"){
-                setDataAnimal({
-                    ...dataAnimal,
-                    ...{feedingimagenid:imagenid}
-                });
-                setImagenid("");
-                setTargetImagen("");
+        if(showImagens===false){
+            if(imagenid!==""){
+                if (targetImagen==="imagenid"){
+                    setDataAnimal({
+                        ...dataAnimal,
+                        ...{imagenid:imagenid}
+                    });
+                    setImagenid("");
+                    setTargetImagen("");
+                }else if(targetImagen==="feedingimagenid"){
+                    setDataAnimal({
+                        ...dataAnimal,
+                        ...{feedingimagenid:imagenid}
+                    });
+                    setImagenid("");
+                    setTargetImagen("");
+                }
             }
         }
     }
@@ -121,9 +128,10 @@ const Animalform=()=>{
                 });
                 break;
             case "tags":
+                let tag=val.split(',');
                 setDataAnimal({
                     ...dataAnimal,
-                    ...{tags:val}
+                    ...{tags:tag}
                 });
                 break;
             default:
@@ -139,12 +147,86 @@ const Animalform=()=>{
     
     const handleSubmitForm=(e)=>{
         e.preventDefault();
-        console.log(JSON.stringify(dataAnimal));
+        let resp=e.target.previousElementSibling;
+        handleManageLoader(true);
+        sendDataToServer({
+            _id:dataAnimal._id
+        }).then(res=>{
+            if(res.state){
+                resp.textContent="success";
+            }else{
+                resp.textContent=res.info;
+            }
+        }).catch(err=>{
+            console.log(err);
+            resp.textContent="error";
+        }).finally(()=>{
+            e.target.parentElement.parentElement.scrollTop=0;
+            setTimeout(()=>{
+                resp.textContent="";
+            },6000)
+            handleManageLoader(false);
+        });
     }
-    const inhabitItems=(title,description,imagen,key)=>{
+    const handleResetForm=(e)=>{
+        e.preventDefault();
+        setDataAnimal({
+            _id:"",
+            title:"",
+            description:"",
+            imagenid:"",
+            feeding:"",
+            feedingimagenid:"",
+            inhabit:[],
+            inhabitimagenid:[],
+            tags:[],
+            userid:"5fd17fdc7ed90014747b1622",
+            action:"insert"
+        });
+        e.target.children[0].focus();
+        getDataUpdate=undefined;
+    }
+    const [showImagens,setShowImagens]=useState(false);
+    const [imagenid,setImagenid]=useState("");
+    const [targetImagen,setTargetImagen]=useState("");
+
+    const sendDataToServer=async(config)=>{
+        let method=(getDataUpdate!==undefined && JSON.stringify(getDataUpdate)!=='{}')
+                    ?'PUT'
+                    :'POST';
+        let sendData=await fetch(`/animal/${config._id}`,{
+            method:method,
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify(dataAnimal)
+        });
+        return await sendData.json();
+    }
+
+
+    useEffect(()=>{
+        if(getDataUpdate!==undefined && JSON.stringify(getDataUpdate)!=='{}'){
+            setDataAnimal({
+                _id:getDataUpdate._id,
+                title:getDataUpdate.title,
+                description:getDataUpdate.description,
+                imagenid:getDataUpdate.imagenid,
+                feeding:getDataUpdate.feeding,
+                feedingimagenid:getDataUpdate.feedingimagenid,
+                inhabit:getDataUpdate.inhabit,
+                inhabitimagenid:getDataUpdate.inhabitimagenid,
+                tags:getDataUpdate.tags,
+                userid:"",
+                action:getDataUpdate.action
+            });
+        }
+    },[getDataUpdate]);
+    useEffect(addImagenData,[addImagenData,showImagens]);
+    const inhabitItems=(title,description,key)=>{
         return(
             <span className="add-items" key={key}>
-                    <img src={imagen} alt="imagen"/>
+                    <img src={Imagen1} alt="imagen"/>
                     <h4>{title}</h4>
                     <p>{description}</p>
                     <a href="edit" k={key} onClick={handleEditItem}><i className="fa fa-pencil-square-o" aria-hidden="true"></i> </a>
@@ -152,29 +234,21 @@ const Animalform=()=>{
                 </span>
         );
     }
-    const [showImagens,setShowImagens]=useState(false);
-    const [imagenid,setImagenid]=useState("");
-    const [targetImagen,setTargetImagen]=useState("");
 
-    useEffect(()=>{
-        if(showImagens===false){
-            addImagenData();
-        }
-    });
 
 
     return (
         <>
         <div className="wrapper-animal-form animate__animated animate__fadeInLeft">
-            <p className="response">response servidor</p>
-            <form method="post" onSubmit={handleSubmitForm}>
+            <p className="response"></p>
+            <form method="post" onSubmit={handleSubmitForm} onReset={handleResetForm}>
                 <legend>Animal</legend>
-                <input type="text" name="title" onChange={addDataText} placeholder="ingrese titulo"/>
-                <textarea name="description" onChange={addDataText} cols="30" rows="10" placeholder="escriba descripcion"></textarea>
+                <input type="text" name="title" onChange={addDataText} defaultValue={dataAnimal.title} placeholder="ingrese titulo"/>
+                <textarea name="description" onChange={addDataText} defaultValue={dataAnimal.description} cols="30" rows="10" placeholder="escriba descripcion"></textarea>
     <a href="add-imagen" data-text="imagenid" onClick={handleShowImages}><i className="fa fa-picture-o" aria-hidden="true"></i> add image {(dataAnimal.imagenid!=="")?<i id="icon-check" className="fa fa-check" aria-hidden="true"></i>:null}</a>
                 <span className="form-separator"></span>
                 <label>feeding</label>
-                <input type="text" name="feeding" onChange={addDataText} placeholder="comida"/>
+                <input type="text" name="feeding" onChange={addDataText} defaultValue={dataAnimal.feeding} placeholder="comida"/>
     <a href="add-imagen" data-text="feedingimagenid" onClick={handleShowImages}><i className="fa fa-picture-o" aria-hidden="true"></i> add image {(dataAnimal.feedingimagenid!=="")?<i id="icon-check" className="fa fa-check" aria-hidden="true"></i>:null}</a>
                 <span className="form-separator"></span>
                 <span className="container-inhabit">
@@ -185,17 +259,18 @@ const Animalform=()=>{
                     <a href="add" data-text="" onClick={handleAddInhabitItem}>Agregar</a>
                     <span className="additions">
                         {(dataAnimal.inhabit.length!==0)?dataAnimal.inhabit.map((ele,key)=>{
-                            return (dataAnimal.inhabit.length>0)?inhabitItems(ele[0],ele[1],dataAnimal.inhabitimagenid[key],key):null;
+                            return (dataAnimal.inhabit.length>0)?inhabitItems(ele[0],ele[1],key):null;
                             }):<h2>ninguno</h2>
                         }
                     </span>
                 </span>
                 <span className="form-separator"></span>
                 <label htmlFor="">etiquetas</label>
-                <input type="text" name="tags" onChange={addDataText} placeholder="etiquetas example:manifero,vertebrado,cute,felino"/>
+                <input type="text" name="tags" defaultValue={dataAnimal.tags.toString()} onChange={addDataText} placeholder="etiquetas example:manifero,vertebrado,cute,felino"/>
                 <br/>
                 <br/>
                 <input type="submit" value="publicar"/>
+                <input type="reset" value="nuevo"/>
             </form>
         </div>
         {

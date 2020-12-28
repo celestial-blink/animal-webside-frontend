@@ -1,31 +1,33 @@
 .wrapper-form-registration{
-    grid-area: formulario2;
     display: grid;
     grid-template-columns: 1fr;
     box-sizing: border-box;
     padding: 20px;
     grid-gap: 10px;
     position: relative;
-    background-color: white;
-    width: 100%;
+    width: 80%;
     height: 100%;
     border:3px solid var(--color-green-one);
 }
 .wrapper-form-registration *{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.wrapper-form-registration h2{
+.wrapper-form-registration legend{
     margin: 0;
     padding: 0;
-    color:var(--color-green-one);
+    color:white;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
     text-align: center;
 }
 .wrapper-form-registration input{
     outline: none;
     width: 100%;
-    height: 30px;
+    height: 40px;
     text-align: center;
-    border:3px solid var(--color-green-one);
+    border-width: 0px;
     color: var(--color-green-one);
     padding: 0;
     margin: 0;
@@ -34,16 +36,19 @@
 .wrapper-form-registration input::placeholder{
     text-align: center;
 }
-.wrapper-form-registration .response{
-    padding: 0;margin: 0;
-    background-color: var(--color-black-two);
+.content-signup .response{
+    padding: 0px;
+    margin: 0;
     color:white;
     text-align: center;
     font-size: 13px;
     height: min-content;
+    z-index: 2;
+    width: 100%;
 }
 .wrapper-form-registration input[type="submit"]{
-    background-color: var(--color-green-one);
+    background-color: var(--color-blue-two);
+    box-sizing: border-box;
     border-radius: 20px;
     color: white;
 }

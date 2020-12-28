@@ -70,3 +70,9 @@
     text-align: center;
     font-weight: bold;
 }
+.wrapper-image-form form img{
+    width: 350px;
+    max-height: 200px;
+    object-fit: cover;
+    object-position: center;
+}

@@ -11,9 +11,9 @@
     box-sizing: border-box;
 }
 .wrapper-know-form .response{
-    height: 35px;
+    height: min-content;
     color:white;
-    background-color: var(--color-black-two);
+    background-color: var(--color-green-one);
     width: 100%;
     padding: 0;
     margin: 0;
@@ -39,6 +39,12 @@
     background-color: var(--color-green-one);
     color:white;
     text-transform: uppercase;
+    border-width: 0px;
+}
+.wrapper-know-form form input[type="reset"]{
+    color:var(--color-red-one);
+    font-size: 16px;
+    font-weight: bold;
     border-width: 0px;
 }
 .wrapper-know-form form input[type="text"]::focus{

@@ -1,7 +1,7 @@
 import {useState,useEffect,Fragment} from 'react';
 import './Systemcontentknow.css';
 
-const Systemcontentknow=({setShowModal})=>{
+const Systemcontentknow=({setShowModal,handleManageLoader,setDataUpdate})=>{
     const [dataKnow,setDataKnow]=useState({
         know:[],
         page:1,
@@ -24,6 +24,12 @@ const Systemcontentknow=({setShowModal})=>{
         });
 
         return await data.json();
+    }
+    const handleGetDataUpdate=(e)=>{
+        e.preventDefault();
+        let dat=dataKnow.know.find(ele=>ele._id===e.currentTarget.getAttribute('k'));
+        setDataUpdate({...dat,...{action:'update'}});
+        setShowModal(true);
     }
     const setDataForFilter=()=>{
         setResponse("");
@@ -52,6 +58,65 @@ const Systemcontentknow=({setShowModal})=>{
         }
     }
 
+    const handleMoreContent=()=>{
+        let div=document.querySelector('#know-main-content');
+        let total=div.scrollHeight-div.clientHeight;
+        div.onscroll=()=>{
+            if (div.scrollTop===total){
+                let page=(dataKnow.page===dataKnow.pages)?1:dataKnow.page+1;
+                if(page>1){
+                    getDataFromServer(`&page=${page}`).then(res=>{
+                        if(res.state){
+                            let all=dataKnow.know.concat(res.info);
+                            setDataKnow({
+                                know:all,
+                                page:res.page,
+                                pages:res.pages
+                            })
+                        }else{
+                            console.log(res);
+                        }
+                    }).catch(err=>{
+                        console.log(err);
+                    })
+                }
+            }
+        }
+    }
+
+    useEffect(handleMoreContent,[dataKnow]);
+
+    const sendDeleteFromServer=async(config)=>{
+        let deleteData=await fetch(`/know/${config._id}`,{
+            method:'DELETE',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                action:'delete'
+            })
+        });
+        return await deleteData.json();
+    }
+
+    const handleDeleteData=(e)=>{
+        e.preventDefault();
+        handleManageLoader(true);
+        let indx=dataKnow.know.findIndex(ele=>ele._id===e.currentTarget.getAttribute('k'));
+        sendDeleteFromServer({_id:e.currentTarget.getAttribute('k')}).then(res=>{
+            if(res.state){
+                let newD=dataKnow.know;
+                newD.splice(indx,1);
+            }else{
+                console.log(res);
+            }
+        }).catch(err=>{
+            console.log(err);
+        }).finally(()=>{
+            handleManageLoader(false);
+        })
+    }
+
     const handleSearchKnow=(e)=>{
         let val=e.currentTarget.value;
         if (val===""){
@@ -68,6 +133,7 @@ const Systemcontentknow=({setShowModal})=>{
 
     const handleOpenModal=(e)=>{
         e.preventDefault();
+        setDataUpdate({});
         setShowModal(true);
     }
 
@@ -84,21 +150,22 @@ const Systemcontentknow=({setShowModal})=>{
                 console.log(res);
                 setResponse(res.info);
             }
+            handleManageLoader(false);
         }).catch(err=>{
             console.log(err);
         });
-    },[]);
+    },[handleManageLoader]);
 
     const knowItem=(title,date,k)=>{
         return (
-            <div className="know-wrapper-item" k={k}>
+            <div className="know-wrapper-item">
                 <h4>{title}</h4>
                 <h5>{date.split('T')[0]}</h5>
                 <span className="item-actions">
-                    <a href="edit">
+                    <a href="edit" k={k} onClick={handleGetDataUpdate}>
                         <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </a>
-                    <a href="delete">
+                    <a href="delete" k={k} onClick={handleDeleteData}>
                         <i className="fa fa-trash" aria-hidden="true"></i>
                     </a>
                 </span>
@@ -120,16 +187,16 @@ const Systemcontentknow=({setShowModal})=>{
                     <h3>title</h3>
                     <h3>date</h3>
                     <h3>actions</h3>
-                    <div className="know-main-content">
+                    <div className="know-main-content" id="know-main-content">
                     {(response!=="")?<p className="response">{response}</p>:null}
                     {(showContent===false)?<p className="loading">loading...</p>
-                        :(filter==="")?dataKnow.know.map((ele,key)=>(
+                        :(filter==="")?dataKnow.know.map((ele)=>(
                         <Fragment key={ele._id}>
-                            {knowItem(ele.title,ele.date,key)}
+                            {knowItem(ele.title,ele.date,ele._id)}
                         </Fragment>))
-                        :dataFilter.know.map((ele,key)=>(
+                        :dataFilter.know.map((ele)=>(
                         <Fragment key={ele._id}>
-                            {knowItem(ele.title,ele.date,key)}
+                            {knowItem(ele.title,ele.date,ele._id)}
                         </Fragment>
                         ))
                         }

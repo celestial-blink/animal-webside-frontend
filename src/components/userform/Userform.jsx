@@ -1,7 +1,7 @@
-import {useState} from 'react';
+import {useState,useEffect} from 'react';
 
 import './Userform.css';
-const Userform=()=>{
+const Userform=({mdataUser})=>{
     const [dataUser,setDataUser]=useState({
         _id:"",
         user:"",
@@ -39,7 +39,19 @@ const Userform=()=>{
     const handleFormSubmit=(e)=>{
         e.preventDefault();
         console.log(dataUser);
-    }
+    };
+
+    useEffect(()=>{
+        if(mdataUser!==undefined || JSON.stringify(mdataUser)!=='{}'){
+            setDataUser({
+                _id:mdataUser._id,
+                user:mdataUser.user,
+                email:mdataUser.email,
+                fullname:mdataUser.fullname,
+                action:"update"  
+            });
+        }
+    },[mdataUser]);
 
     return (
         <>

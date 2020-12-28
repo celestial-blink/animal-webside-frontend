@@ -1,25 +1,24 @@
 .wrapper-form-login{
-    grid-area: formulario1;
     grid-column: 1;
     position: relative;
-    background-color: white;
     display: grid;
-    grid-template: auto auto auto / 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-gap:10px;
     box-sizing: border-box;
     padding: 10px;
-    width: 100%;
+    width: 80%;
     height: 100%;
-    border:3px solid var(--color-green-one);
+    max-height: 300px;
 }
 
 .wrapper-form-login input {
     outline: none;
-    border:3px solid var(--color-green-one);
     text-align: center;
-    height: 25px;
+    height: 40px;
+    border-radius: 20px;
     color: var(--color-green-one);
     width: 100%;
+    border-width: 0px;
     padding: 0;
     margin: 0;
 }
@@ -28,16 +27,16 @@
     text-align: center;
 }
 
-.wrapper-form-login h2 {
-    grid-column: span 2;
+.wrapper-form-login legend {
     padding: 0;
     margin: 0;
-    color: var(--color-green-one);
+    color: var(--color-black-one);
+    font-weight: bolder;
+    text-align: center;
 }
 .wrapper-form-login input[type="submit"]{
-    grid-column: 2;
-    border-radius: 20px;
-    background-color: var(--color-green-one);
+    border-radius: 10px;
+    background-color: var(--color-blue-two);
     color:white;
 }
 .wrapper-form-login .response{

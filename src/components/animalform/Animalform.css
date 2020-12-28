@@ -89,6 +89,7 @@
     height: 100px;
     width: 100%;
     grid-gap: 5px;
+    background-color: var(--color-gray-two);
 }
 .wrapper-animal-form .container-inhabit .additions img{
     object-position: center;
@@ -122,6 +123,7 @@
 .wrapper-animal-form .container-inhabit .additions .add-items a{
     color:var(--color-green-one);
     grid-row:1 / span 1;
+    font-size: 25px;
 }
 .wrapper-animal-form .container-inhabit .additions .add-items a:last-child{
     color: red;
@@ -151,10 +153,17 @@
     text-transform: uppercase;
     font-weight: bold;
 }
+.wrapper-animal-form input[type="reset"]{
+    background-color: var(--color-gray-two);
+    color:var(--color-red-two);
+    border-width: 0px;
+    font-weight: bolder;
+    font-size: 18px;
+}
 .wrapper-animal-form .response{
-    background-color: var(--color-black-two);
-    color: var(--color-gray-two);
-    height: 100%;
+    background-color: var(--color-green-one);
+    color: white;
+    height: min-content;
 }
 .wrapper-animal-form form legend{
     height: 100%;

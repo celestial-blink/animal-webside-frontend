@@ -2,7 +2,7 @@ import {useState,useEffect,Fragment} from 'react';
 
 import './Systemcontentanimal.css';
 
-const Systemcontentlist=({setShowModal})=>{
+const Systemcontentlist=({setShowModal,handleManageLoader,setDataUpdate})=>{
 
     const [dataAnimals,setDataAnimals]=useState({
         animals:[],
@@ -23,6 +23,7 @@ const Systemcontentlist=({setShowModal})=>{
     const handleOpenModal=(e)=>{
         e.preventDefault();
         setShowModal(true);
+        setDataUpdate(undefined);
     }
 
     const getDataFromServer=async(filter)=>{
@@ -58,6 +59,66 @@ const Systemcontentlist=({setShowModal})=>{
                     });
         }
     }
+    const handleUpdateAnimal=(e)=>{
+        e.preventDefault();
+        let ani=dataAnimals.animals.find(ele=>ele._id===e.currentTarget.getAttribute('k'));
+        console.log(ani.inhabitImagen);
+        if(JSON.stringify(ani)!==null){
+            setDataUpdate({
+                _id:ani._id,
+                title:ani.title,
+                description:ani.description,
+                imagenid:ani.imagen._id,
+                feeding:ani.feeding,
+                feedingimagenid:ani.feedingImagen._id,
+                inhabit:ani.inhabit,
+                inhabitimagenid:ani.inhabitImagen,
+                tags:ani.tags,
+                userid:"5fd17fdc7ed90014747b1622",
+                action:"update"
+            });
+            setShowModal(true);
+        }
+    }
+
+    const deleteAnimalFromServer=async(config)=>{
+        let dele=await fetch(`/animal/${config._id}`,{
+            method:'DELETE',
+            body:JSON.stringify({
+                action:'delete'
+            }),
+            headers:{
+                'Content-Type':'application/json'
+            }
+        });
+        return await dele.json();
+    }
+
+    const handleDeleteAnimal=(e)=>{
+        e.preventDefault();
+        handleManageLoader(true);
+        let indx=dataAnimals.animals.findIndex(ele=>ele._id===e.currentTarget.getAttribute('k'));
+        if(indx>=0){
+            deleteAnimalFromServer({
+                _id:e.currentTarget.getAttribute('k')
+            }).then(res=>{
+                if(res.state){
+                    let nw=dataAnimals.animals;
+                    nw.splice(indx,1);
+                    setDataAnimals({
+                        ...dataAnimals,
+                        ...{animals:nw}
+                    });
+                }else{
+                    console.log(res);
+                }
+            }).catch(err=>{
+                console.log(err);
+            }).finally(()=>{
+                handleManageLoader(false);
+            })
+        }
+    }
 
     const handleSearchAnimal=(e)=>{
             let val=e.currentTarget.value;
@@ -86,10 +147,11 @@ const Systemcontentlist=({setShowModal})=>{
                 console.log(res);
                 setResponse(res.info);
             }
+            handleManageLoader(false);
         }).catch(err=>{
             console.log(err);
         });
-    },[]);
+    },[handleManageLoader]);
 
     const listItem=(title,date,k)=>{
         return (
@@ -97,10 +159,10 @@ const Systemcontentlist=({setShowModal})=>{
                 <h4>{title}</h4>
                 <h5>{date.split('T')[0]}</h5>
                 <span className="item-actions">
-                    <a href="edit">
+                    <a href="edit" k={k} onClick={handleUpdateAnimal}>
                         <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </a>
-                    <a href="delete">
+                    <a href="delete"k={k} onClick={handleDeleteAnimal}>
                         <i className="fa fa-trash" aria-hidden="true"></i>
                     </a>
                 </span>
@@ -125,13 +187,13 @@ const Systemcontentlist=({setShowModal})=>{
                     <div className="list-main-content">
                         {(response!=="")?<p className="response">{response}</p>:null}
                         {(showContent===false)?<p className="loading">loading...</p>
-                        :(filter==="")?dataAnimals.animals.map((ele,key)=>(
+                        :(filter==="")?dataAnimals.animals.map((ele)=>(
                         <Fragment key={ele._id}>
-                            {listItem(ele.title,ele.date,key)}
+                            {listItem(ele.title,ele.date,ele._id)}
                         </Fragment>))
-                        :dataFilter.animals.map((ele,key)=>(
+                        :dataFilter.animals.map((ele)=>(
                         <Fragment key={ele._id}>
-                            {listItem(ele.title,ele.date,key)}
+                            {listItem(ele.title,ele.date,ele._id)}
                         </Fragment>
                         ))
                         }
