@@ -21,7 +21,7 @@ const Galery = () => {
     const [showContent,setShowContent]=useState(false);
 
     const getDataFromServer=async(filter)=>{
-        let data=await fetch(`http://127.0.0.1:3030/imagen?action=get-data-imagen${filter}`,{
+        let data=await fetch(`/imagen?action=get-data-imagen${filter}`,{
         method:'GET'
         });
 

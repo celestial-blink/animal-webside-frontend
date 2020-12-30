@@ -42,7 +42,7 @@
 .wrapper-form-login .response{
     padding: 0;margin: 0;
     grid-column: span 2;
-    background-color: var(--color-black-two);
+    background-color: var(--color-green-one);
     color:white;
     text-align: center;
     font-size: 13px;

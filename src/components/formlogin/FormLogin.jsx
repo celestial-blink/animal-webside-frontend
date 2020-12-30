@@ -34,10 +34,10 @@ const FormLogin =({setShowLoader})=>{
     const setResponse=(object)=>{
         let element=object.element;
         if(object.type==="err"){
-            element.classList.replace('success','error');
+            element.classList.delete('error');
             element.textContent=object.message;
         }else{
-            element.classList.replace('error','success'); 
+            element.classList.add('error') 
             element.textContent=object.message;
         }
     }
@@ -49,17 +49,17 @@ const FormLogin =({setShowLoader})=>{
         sendDataFromServer(dataLogin).then(res=>{
             console.log(res);
             if(res.state){
-                setResponse({type:'success',element:e.target.firstElementChild,message:"success"});
+                setResponse({type:'success',element:e.target.previusElementSibling,message:"success"});
                 setTimeout(()=>{
                     history.push('/system/admin');
                 },2000);
             }else{
-                setResponse({type:'err',element:e.target.firstElementChild,message:res.info});
+                setResponse({type:'err',element:e.target.previusElementSibling,message:res.info});
             }
             changeStateLoader(false);
         }).catch(err=>{
             changeStateLoader(false);
-            setResponse({type:'err',element:e.target.firstElementChild,message:err.message});
+            setResponse({type:'err',element:e.target.previusElementSibling,message:err.message});
         });
     };
 
@@ -77,7 +77,7 @@ const FormLogin =({setShowLoader})=>{
 
     return(
         <>
-            <p className="response success"></p>
+            <p className="response"></p>
             <form className="wrapper-form-login" onSubmit={handleSubmitData}>
                 <legend>Form Login</legend>
                 <input type="text" name="user" onChange={handleSetdataLogin} placeholder="Usuario"/>

@@ -3,7 +3,7 @@ import KnowForm from '../knowform/Knowform';
 import Animalform from '../animalform/Animalform';
 
 import './modal.css';
-const modal=({setShowModal,namecomponent,setUpdateNewData,handleManageLoader,getDataUpdate})=>{
+const modal=({setShowModal,namecomponent,handleManageLoader,getDataUpdate,dataUser})=>{
     const handleCloseModal=(e)=>{
         e.preventDefault();
         setShowModal(false);
@@ -12,11 +12,11 @@ const modal=({setShowModal,namecomponent,setUpdateNewData,handleManageLoader,get
     const selectCompoment=(component)=>{
         switch (component){
             case "animal":
-                    return <Animalform  getDataUpdate={getDataUpdate} setUpdateNewData={setUpdateNewData} handleManageLoader={handleManageLoader}/>;
+                    return <Animalform dataUser={dataUser}  getDataUpdate={getDataUpdate} handleManageLoader={handleManageLoader}/>;
                 case "images":
-                    return <ImagenForm setUpdateNewData={setUpdateNewData} handleManageLoader={handleManageLoader}/>;
+                    return <ImagenForm dataUser={dataUser} handleManageLoader={handleManageLoader}/>;
                 case "know":
-                    return <KnowForm  dataUpdate={getDataUpdate} setUpdateNewData={setUpdateNewData} handleManageLoader={handleManageLoader}/>;
+                    return <KnowForm dataUser={dataUser} dataUpdate={getDataUpdate} handleManageLoader={handleManageLoader}/>;
             default:
                 return null;
         }

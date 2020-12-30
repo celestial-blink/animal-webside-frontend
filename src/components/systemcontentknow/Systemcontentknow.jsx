@@ -1,7 +1,7 @@
 import {useState,useEffect,Fragment} from 'react';
 import './Systemcontentknow.css';
 
-const Systemcontentknow=({setShowModal,handleManageLoader,setDataUpdate})=>{
+const Systemcontentknow=({setShowModal,handleManageLoader,setDataUpdate,handleSession})=>{
     const [dataKnow,setDataKnow]=useState({
         know:[],
         page:1,
@@ -19,7 +19,7 @@ const Systemcontentknow=({setShowModal,handleManageLoader,setDataUpdate})=>{
     const [response,setResponse]=useState("");
 
     const getDataFromServer=async(filter)=>{
-        let data=await fetch(`http://127.0.0.1:3030/know?action=get-data-know${filter}`,{
+        let data=await fetch(`/know?action=get-data-know${filter}`,{
         method:'GET'
         });
 
@@ -138,6 +138,7 @@ const Systemcontentknow=({setShowModal,handleManageLoader,setDataUpdate})=>{
     }
 
     useEffect(()=>{
+        handleSession();
         getDataFromServer("").then(res=>{
             setShowContent(true);
             if (res.state){
@@ -154,7 +155,7 @@ const Systemcontentknow=({setShowModal,handleManageLoader,setDataUpdate})=>{
         }).catch(err=>{
             console.log(err);
         });
-    },[handleManageLoader]);
+    },[handleManageLoader,handleSession]);
 
     const knowItem=(title,date,k)=>{
         return (

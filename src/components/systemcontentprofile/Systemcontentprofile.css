@@ -70,10 +70,10 @@
 }
 .wrapper-systemcontent-profile .wrapper-change-password .response{
     padding: 0;margin: 0;
-    background-color: var(--color-black-two);
+    background-color: var(--color-green-one);
     color:white;
     width: calc(100% - 10px);
-    min-height: 35px;
+    height: min-content;
     text-align: center;
 }
 .wrapper-systemcontent-profile .wrapper-change-password form{

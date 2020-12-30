@@ -3,12 +3,13 @@
     width: calc(100% - 30px);
     display: grid;
     grid-template-columns:repeat(auto-fill,250px);
-    grid-template-rows:200px;
+    grid-template-rows: repeat(auto-fill,200px);
     grid-gap:5px;
     position: relative;
     justify-content: center;
     background-color: white;
     grid-area: principal;
+    height: min-content;
     margin-left: 30px;
     box-sizing: border-box;
 }
@@ -35,6 +36,7 @@
 .wrapper-images .response{
     margin: 0;padding: 0;
     height: min-content;
+    grid-column-end: -1;
 }
 @media (max-width:700px){
     .wrapper-images{

@@ -11,9 +11,9 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .wrapper-form-user .response{
-    min-height: 35px;
+    height: min-content;
     width: 100%;
-    background-color: var(--color-black-two);
+    background-color: var(--color-green-one);
     color:white;
     padding: 0;margin: 0;
     text-align: center;

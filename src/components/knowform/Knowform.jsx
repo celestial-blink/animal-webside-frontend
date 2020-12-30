@@ -2,10 +2,10 @@ import {useState,useEffect} from 'react';
 
 import Showminimagen from '../showminimagen/Showminimagen';
 import './Knowform.css';
-const Knowform=({dataUpdate,handleManageLoader})=>{
+const Knowform=({dataUpdate,handleManageLoader,dataUser})=>{
     const [knowData,setKnowData]=useState({
         _id:"",
-        userid:"5fd17fdc7ed90014747b1622",
+        userid:dataUser._id,
         imagenid:"",
         title:"",
         content:"",
@@ -74,7 +74,7 @@ const Knowform=({dataUpdate,handleManageLoader})=>{
         e.preventDefault();
         setKnowData({
             _id:"",
-            userid:"5fd17fdc7ed90014747b1622",
+            userid:dataUser._id,
             imagenid:"",
             title:"",
             content:"",
@@ -93,7 +93,7 @@ const Knowform=({dataUpdate,handleManageLoader})=>{
         if(dataUpdate!==undefined && JSON.stringify(dataUpdate)!=='{}'){
             setKnowData({
                 _id:dataUpdate._id,
-                userid:"",
+                userid:dataUser._id,
                 imagenid:dataUpdate.imagen[0]._id,
                 title:dataUpdate.title,
                 action:dataUpdate.action,
@@ -115,7 +115,7 @@ const Knowform=({dataUpdate,handleManageLoader})=>{
             setImagenid("");
         }
     },[imagenid,knowData]);
-    useEffect(addDataImageUpdate,[dataUpdate]);
+    useEffect(addDataImageUpdate,[dataUpdate,dataUser._id]);
     return (
         <>
             <div className="wrapper-know-form animate__animated animate__fadeInLeft">

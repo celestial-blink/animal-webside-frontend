@@ -2,7 +2,7 @@ import {useState,useEffect,Fragment} from 'react';
 
 import './Systemcontentanimal.css';
 
-const Systemcontentlist=({setShowModal,handleManageLoader,setDataUpdate})=>{
+const Systemcontentlist=({setShowModal,handleManageLoader,setDataUpdate,handleSession})=>{
 
     const [dataAnimals,setDataAnimals]=useState({
         animals:[],
@@ -26,8 +26,35 @@ const Systemcontentlist=({setShowModal,handleManageLoader,setDataUpdate})=>{
         setDataUpdate(undefined);
     }
 
+    const handleMoreContent=()=>{
+        let div=document.querySelector('#animal-main-content');
+        let total=div.scrollHeight-div.clientHeight;
+        div.onscroll=()=>{
+            if (div.scrollTop===total){
+                let page=(dataAnimals.page===dataAnimals.pages)?1:dataAnimals.page+1;
+                if(page>1){
+                    getDataFromServer(`&page=${page}`).then(res=>{
+                        if(res.state){
+                            let all=dataAnimals.animals.concat(res.info);
+                            setDataAnimals({
+                                know:all,
+                                page:res.page,
+                                pages:res.pages
+                            })
+                        }else{
+                            console.log(res);
+                        }
+                    }).catch(err=>{
+                        console.log(err);
+                    })
+                }
+            }
+        }
+    }
+    useEffect(handleMoreContent,[dataAnimals]);
+
     const getDataFromServer=async(filter)=>{
-        let data=await fetch(`http://127.0.0.1:3030/animal?action=get-data-animals${filter}`,{
+        let data=await fetch(`/animal?action=get-data-animals${filter}`,{
         method:'GET'
         });
 
@@ -135,6 +162,7 @@ const Systemcontentlist=({setShowModal,handleManageLoader,setDataUpdate})=>{
     ,[filter]);
 
     useEffect(()=>{
+        handleSession();
         getDataFromServer("").then(res=>{
             setShowContent(true);
             if (res.state){
@@ -151,7 +179,7 @@ const Systemcontentlist=({setShowModal,handleManageLoader,setDataUpdate})=>{
         }).catch(err=>{
             console.log(err);
         });
-    },[handleManageLoader]);
+    },[handleManageLoader,handleSession]);
 
     const listItem=(title,date,k)=>{
         return (
@@ -184,7 +212,7 @@ const Systemcontentlist=({setShowModal,handleManageLoader,setDataUpdate})=>{
                     <h3>title</h3>
                     <h3>date</h3>
                     <h3>actions</h3>
-                    <div className="list-main-content">
+                    <div className="list-main-content" id="animal-main-content">
                         {(response!=="")?<p className="response">{response}</p>:null}
                         {(showContent===false)?<p className="loading">loading...</p>
                         :(filter==="")?dataAnimals.animals.map((ele)=>(

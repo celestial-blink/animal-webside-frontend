@@ -20,7 +20,6 @@ const Systemadmin=()=>{
 
     const [showModal,setShowModal]=useState(false);
     const [showLoader,setShowLoader]=useState(true);
-    const [updateNewData,setUpdateNewData]=useState(false);
     const [nameComponent,setNameComponent]=useState("home");
     const [getDataUpdate,setDataUpdate]=useState({});
     
@@ -34,10 +33,19 @@ const Systemadmin=()=>{
     });
 
     const getSession=async(signa)=>{
-        let msesion=await fetch(`/user/verifiedsession`,{
-            signal:signa
-        });
+        let sgn=(signa)?{signal:signa}:{};
+        let msesion=await fetch(`/user/verifiedsession`,sgn);
         return await msesion.json();
+    }
+
+    const handleSession=()=>{
+        getSession().then(res=>{
+            if(res.info.session===false){
+                history.push("/login");
+            }
+        }).catch(err=>{
+            console.log(err);
+        })
     }
 
     const handleManageLoader=(show=true)=>{
@@ -62,15 +70,38 @@ const Systemadmin=()=>{
     const selectComponent=(component)=>{
         switch (component){
             case "home":
-                return <Systemcontentmain handleManageLoader={handleManageLoader} updateNewData={updateNewData} setUpdateNewData={setUpdateNewData} setNameComponent={setNameComponent}/>
+                return <Systemcontentmain 
+                        handleSession={handleSession}
+                        dataUser={dataUser}
+                        handleManageLoader={handleManageLoader}
+                        setNameComponent={setNameComponent}
+                      />
             case "animal":
-                return <Systemcontentanimal setDataUpdate={setDataUpdate} handleManageLoader={handleManageLoader} updateNewData={updateNewData} setUpdateNewData={setUpdateNewData} setShowModal={setShowModal}/>
+                return <Systemcontentanimal
+                        handleSession={handleSession}
+                        dataUser={dataUser}
+                        setDataUpdate={setDataUpdate}
+                        handleManageLoader={handleManageLoader}
+                        setShowModal={setShowModal}/>
             case "images":
-                return <Systemcontentimage handleManageLoader={handleManageLoader} updateNewData={updateNewData} setUpdateNewData={setUpdateNewData}  setShowModal={setShowModal}/>
+                return <Systemcontentimage
+                        handleSession={handleSession}
+                        dataUser={dataUser}
+                        handleManageLoader={handleManageLoader}
+                        setShowModal={setShowModal}/>
             case "know":
-                return <Systemcontentknow setDataUpdate={setDataUpdate} handleManageLoader={handleManageLoader} updateNewData={updateNewData} setUpdateNewData={setUpdateNewData} setShowModal={setShowModal}/>;
+                return <Systemcontentknow
+                        dataUser={dataUser}
+                        handleSession={handleSession}
+                        setDataUpdate={setDataUpdate}
+                        handleManageLoader={handleManageLoader}
+                        setShowModal={setShowModal}/>;
             case "profile":
-                return <Systemcontentprofile dataUser={dataUser} handleManageLoader={handleManageLoader}/>
+                return <Systemcontentprofile
+                        handleSession={handleSession}
+                        dataUser={dataUser}
+                        setDataUser={setDataUser}
+                        handleManageLoader={handleManageLoader}/>
             default :
                 return null;
         }
@@ -107,7 +138,6 @@ const Systemadmin=()=>{
         const abortController=new AbortController();
         const signa=abortController.signal;
          getSession(signa).then(res=>{
-             console.log(res);
              if(res.state){
                  if (res.info.session===false){
                      history.push('/login');
@@ -136,7 +166,7 @@ const Systemadmin=()=>{
     return (
         <>
         {(showLoader)?<MLoader/>:null}
-        {(showModal)?<Modal getDataUpdate={getDataUpdate} namecomponent={nameComponent} setUpdateNewData={setUpdateNewData} handleManageLoader={handleManageLoader} setShowModal={setShowModal}/>:null}
+        {(showModal)?<Modal dataUser={dataUser} getDataUpdate={getDataUpdate} namecomponent={nameComponent} handleManageLoader={handleManageLoader} setShowModal={setShowModal}/>:null}
             <div className="wrapper-system">
                 <div className="system-navbar">
                     <a href="/" className="system-logo">

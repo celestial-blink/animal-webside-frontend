@@ -6,6 +6,7 @@
     box-sizing: border-box;
     box-shadow: 0 0 10px black;
     margin-right: 30px;
+    margin-top: 50px;
     flex-direction: column;
     max-height: 800px;
 }

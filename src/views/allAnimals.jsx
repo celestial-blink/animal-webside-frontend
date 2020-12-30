@@ -49,24 +49,25 @@ const Allanimals=()=>{
     const handleMoreResult=(e)=>{
         e.preventDefault();
         let page=(dataAnimal.page!==dataAnimal.pages)?`page=${dataAnimal.page+1}`:"";
-        console.log(page,"mi pagina a solicitar");
-        getDatafromServer(page).then(res=>{
-            if(res.state){
-                setDataAnimal({
-                    animals:{...dataAnimal.animals,...res.info},
-                    page:res.page,
-                    pages:res.pages
-                });
-            }else{
-                console.log(res.info);
-            }
-        }).catch(err=>{
-            console.log(err);
-        })
+        if(page!==""){
+            getDatafromServer(page).then(res=>{
+                if(res.state){
+                    setDataAnimal({
+                        animals:{...dataAnimal.animals,...res.info},
+                        page:res.page,
+                        pages:res.pages
+                    });
+                }else{
+                    console.log(res.info);
+                }
+            }).catch(err=>{
+                console.log(err);
+            });
+        }
     }
 
     const getDatafromServer=async(params)=>{
-        let data=await fetch(`http://127.0.0.1:3030/animal?action=get-data-animals${params}`,{
+        let data=await fetch(`/animal?action=get-data-animals${params}`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json'
@@ -77,7 +78,7 @@ const Allanimals=()=>{
 
     useEffect(setDataForFilter,[filter]);
     useEffect(()=>{
-        getDatafromServer(" ").then(res=>{
+        getDatafromServer("").then(res=>{
             setShowContent(true);
             if(res.state){
                 setDataAnimal({

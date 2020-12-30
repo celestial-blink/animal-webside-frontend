@@ -1,10 +1,15 @@
 import {useState,useEffect} from 'react';
+
 import Showminimagen from '../showminimagen/Showminimagen';
 
 import Imagen1 from './Imagen.svg';
 
 import './Animalform.css';
-const Animalform=({getDataUpdate,handleManageLoader})=>{
+const Animalform=({getDataUpdate,handleManageLoader,dataUser})=>{
+    const query=new URLSearchParams(window.location.search);
+
+    let _id=(dataUser!==undefined)?dataUser._id:(query.get('_id')!==undefined)?query.get('_id'):"";
+
     const [dataAnimal,setDataAnimal]=useState({
         _id:"",
         title:"",
@@ -15,7 +20,7 @@ const Animalform=({getDataUpdate,handleManageLoader})=>{
         inhabit:[],
         inhabitimagenid:[],
         tags:[],
-        userid:"5fd17fdc7ed90014747b1622",
+        userid:_id,
         action:"insert"
     });
 
@@ -180,7 +185,7 @@ const Animalform=({getDataUpdate,handleManageLoader})=>{
             inhabit:[],
             inhabitimagenid:[],
             tags:[],
-            userid:"5fd17fdc7ed90014747b1622",
+            userid:dataUser._id,
             action:"insert"
         });
         e.target.children[0].focus();
@@ -217,11 +222,11 @@ const Animalform=({getDataUpdate,handleManageLoader})=>{
                 inhabit:getDataUpdate.inhabit,
                 inhabitimagenid:getDataUpdate.inhabitimagenid,
                 tags:getDataUpdate.tags,
-                userid:"",
+                userid:_id,
                 action:getDataUpdate.action
             });
         }
-    },[getDataUpdate]);
+    },[getDataUpdate,_id]);
     useEffect(addImagenData,[addImagenData,showImagens]);
     const inhabitItems=(title,description,key)=>{
         return(

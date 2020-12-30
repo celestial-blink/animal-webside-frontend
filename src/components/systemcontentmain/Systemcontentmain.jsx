@@ -6,14 +6,15 @@ import imagen2 from './animal.svg';
 import imagen3 from './know.svg';
 import imagen4 from './image.svg';
 
-const Systemcontentmain=({setNameComponent,handleManageLoader})=>{
+const Systemcontentmain=({setNameComponent,handleManageLoader,handleSession})=>{
     const handleGetNameComponent=(e)=>{
         e.preventDefault();
         setNameComponent(e.target.getAttribute('href'));
     }
     useEffect(()=>{
         handleManageLoader(false);
-    },[handleManageLoader])
+        handleSession();
+    },[handleManageLoader,handleSession])
     return (
         <>
          <div className="wrapper-systemcontent-main">

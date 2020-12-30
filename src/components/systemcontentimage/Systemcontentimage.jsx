@@ -2,9 +2,8 @@ import {useState,useEffect,Fragment} from 'react';
 
 import './Systemcontentimage.css';
 import Image1 from './ImageNotFound.svg';
-import dataconfig from '../../keys';
 
-const Systemcontentcard=({setShowModal,updateNewData,setUpdateNewData,handleManageLoader})=>{
+const Systemcontentcard=({setShowModal,updateNewData,setUpdateNewData,handleManageLoader,handleSession})=>{
     const [dataImage,setDataImage]=useState({
         images:[],
         page:1,
@@ -22,7 +21,7 @@ const Systemcontentcard=({setShowModal,updateNewData,setUpdateNewData,handleMana
     const [response,setResponse]=useState("");
 
     const getDataFromServer=async(filter)=>{
-        let data=await fetch(`${dataconfig.dataserver.url}/imagen?action=get-data-imagen${filter}`,{
+        let data=await fetch(`/imagen?action=get-data-imagen${filter}`,{
         method:'GET'
         });
 
@@ -30,14 +29,15 @@ const Systemcontentcard=({setShowModal,updateNewData,setUpdateNewData,handleMana
     }
 
     const deleteImageFromServer=async(id)=>{
-        let removeData=await fetch(`${dataconfig.dataserver.url}/imagen/${id}`,{
+        let removeData=await fetch(`/imagen/${id}`,{
             method:'DELETE',
             body:JSON.stringify({
                 action:'delete'
             }),
             headers:{
                 'Content-Type':'application/json'
-            }
+            },
+            credentials:'same-origin'
         });
         return await removeData.json();
     };
@@ -125,6 +125,7 @@ const Systemcontentcard=({setShowModal,updateNewData,setUpdateNewData,handleMana
     ,[filter]);
 
     useEffect(()=>{
+        handleSession();
         getDataFromServer("").then(res=>{
             setShowContent(true);
             if (res.state){
@@ -141,7 +142,7 @@ const Systemcontentcard=({setShowModal,updateNewData,setUpdateNewData,handleMana
         }).catch(err=>{
             console.log(err);
         });
-    },[handleManageLoader]);
+    },[handleManageLoader,handleSession]);
 
 
     const handleMoreContent=()=>{

@@ -1,15 +1,14 @@
 import {useState,useEffect} from 'react';
 import './Imageform.css';
 
-import dataconfig from '../../keys';
 
-const Imageform =({setUpdateNewData})=>{
+const Imageform =({dataUser})=>{
 
     const [dataImagen,setDataImagen]=useState({
         _id:"",
         title:"",
         imagen:"",
-        userid:"5fd17fdc7ed90014747b1622",
+        userid:dataUser._id,
         action:"insert"
     });
 
@@ -18,10 +17,6 @@ const Imageform =({setUpdateNewData})=>{
             ...dataImagen,
             ...{title:e.target.value}
         });
-    }
-
-    const handleLoadNewData=(value)=>{
-        setUpdateNewData(value);
     }
 
     const handleVerifiedImagen=(e)=>{
@@ -37,7 +32,6 @@ const Imageform =({setUpdateNewData})=>{
                 });
                 e.target.previousElementSibling.classList.remove('error');
                 handleShowImagePreview(e.target.nextElementSibling);
-                handleLoadNewData(true);
             }else{
                 setDataImagen({
                     ...dataImagen,
@@ -73,10 +67,9 @@ const Imageform =({setUpdateNewData})=>{
                         _id:"",
                         title:"",
                         imagen:"",
-                        userid:"5fd17fdc7ed90014747b1622",
+                        userid:dataUser._id,
                         action:"insert"
                     });
-                    console.log(res)
                 }else{
                     ress.textContent=res.info;
                     ress.classList.add('error');
@@ -107,9 +100,10 @@ const Imageform =({setUpdateNewData})=>{
     }
 
     const sendDataToServer=async(data)=>{
-        let send=await fetch(`${dataconfig.dataserver.url}/imagen`,{
+        let send=await fetch(`/imagen`,{
             method:'POST',
-            body:data
+            body:data,
+            credentials:'same-origin'
         });
         return await send.json();
     }
