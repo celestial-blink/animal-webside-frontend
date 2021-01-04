@@ -67,8 +67,9 @@ const Galery = () => {
             let fil=`&page=${(dataImages.page!==dataImages.pages)?dataImages.page+1:1}`;
             getDataFromServer(fil).then(res=>{
                 if(res.state){
+                    let all=dataImages.images.concat(res.info);
                     setDataImages({
-                       images:{...dataImages.images,...res.info},
+                       images:all,
                        page:res.page,
                        pages:res.pages
                     });
@@ -109,7 +110,7 @@ const Galery = () => {
                 {(showContent===false)?<p className="loading">loading...</p>
                 :(filter==="")?dataImages.images.map(ele=>(<div key={ele._id} className={randomClass(typeImg)}><PhotoImagen imagen={ele.pathimagen}/></div>))
                 :dataFilter.images.map(ele=>(<div key={ele._id} className={randomClass(typeImg)}><PhotoImagen imagen={ele.pathimagen}/></div>))}
-            {(showContent!==false)
+            {(showContent)
             ?(dataImages.page!==dataImages.pages)
             ?<a onClick={handleMoreContent} href="more" className="btn-more btn-images">show more</a>
             :null:null}

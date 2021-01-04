@@ -3,7 +3,7 @@
     width: calc(100% - 30px);
     display: grid;
     grid-template-columns:repeat(auto-fill,250px);
-    grid-template-rows: repeat(auto-fill,200px);
+    grid-template-rows: repeat(auto-fill,150px);
     grid-gap:5px;
     position: relative;
     justify-content: center;
@@ -36,6 +36,7 @@
 .wrapper-images .response{
     margin: 0;padding: 0;
     height: min-content;
+    grid-column-start: 1;
     grid-column-end: -1;
 }
 @media (max-width:700px){
